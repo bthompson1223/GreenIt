@@ -13,3 +13,19 @@ class Community(db.Model):
     community_name = db.Column(db.String, nullable=False)
     description = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.String, nullable=False)
+
+    owner = db.relationship('User', back_populates = 'communities')
+    posts = db.relationship('Post', back_populates = 'community', cascade = 'all, delete-orphan')
+
+
+    def to_dict(self):
+        owner = self.owner.to_dict()
+
+        return {
+            'id': self.id,
+            'owner_id': self.owner_id,
+            'community_name': self.community_name,
+            'description': self.description,
+            'image_url': self.image_url,
+            'owner': owner
+        }
