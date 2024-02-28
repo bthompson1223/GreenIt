@@ -21,6 +21,9 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     communities = db.relationship('Community', back_populates = 'owner', cascade = 'all, delete-orphan')
+    posts = db.relationship('Post', back_populates = 'poster', cascade = 'all, delete-orphan')
+    comments = db.relationship('Comment', back_populates = 'commenter', cascade = 'all, delete-orphan')
+    likes = db.relationship('Like', back_populates = 'post', cascade = 'all, delete-orphan')
 
     @property
     def password(self):

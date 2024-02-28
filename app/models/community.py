@@ -15,6 +15,7 @@ class Community(db.Model):
     image_url = db.Column(db.String, nullable=False)
 
     owner = db.relationship('User', back_populates = 'communities')
+    posts = db.relationship('Post', back_populates = 'community', cascade = 'all, delete-orphan')
 
 
     def to_dict(self):
