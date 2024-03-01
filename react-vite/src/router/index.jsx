@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import SplashPage from "../components/SplashPage/SplashPage";
 import CommunityDetail from "../components/Community/CommunityDetail/CommunityDetail";
 import CreateCommunity from "../components/Community/CreateCommunity/CreateCommunity";
+import EditCommunity from "../components/Community/EditCommunity/EditCommunity";
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +29,17 @@ export const router = createBrowserRouter([
         children: [
           {
             path: ":community",
-            element: <CommunityDetail />,
+            element: <Outlet />,
+            children: [
+              {
+                index: true,
+                element: <CommunityDetail />,
+              },
+              {
+                path: "edit",
+                element: <EditCommunity />,
+              },
+            ],
           },
           {
             path: "new",

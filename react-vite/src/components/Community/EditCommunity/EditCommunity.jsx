@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { thunkCreateCommunity } from "../../../redux/community";
+import { useNavigate, useParams } from "react-router-dom";
+import { thunkGetOneCommunity } from "../../../redux/community";
 
-const CreateCommunity = () => {
+const EditCommunity = () => {
+  const communityObj = useSelector((state) => state.communities);
+  const communityParam = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const navigate = useNavigate();
@@ -13,7 +15,30 @@ const CreateCommunity = () => {
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 
-  if (!user) return <h2>You must be logged in to create a community!</h2>;
+  //   console.log(communityParam);
+  useEffect(() => {
+    dispatch(thunkGetOneCommunity(communityParam.community));
+  }, [dispatch, communityParam]);
+
+  useEffect(() => {
+    if (community?.id) {
+      setCommunityName(community?.community_name);
+      setDescription(community.description);
+      setImageUrl(community.image_url);
+    }
+  });
+
+  const community = Object.values(communityObj)[0];
+  if (!Object.values(communityObj)) return null;
+  //   console.log(communityObj);
+  if (!user) return <h2>You must be logged in to edit a community!</h2>;
+
+  //   console.log(community);
+
+  //   console.log("IDS =>", user.id, communityObj);
+
+  if (user.id != community?.owner_id) return <h2>Unauthorized</h2>;
+  //   console.log("community name =>", communityName);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,16 +65,16 @@ const CreateCommunity = () => {
 
       setImageLoading(true);
 
-      await dispatch(thunkCreateCommunity(formData))
-        .then((createdCommunity) => {
-          navigate(`/communities/${createdCommunity.community_name}`);
+      await dispatch(thunkUpdateCommunity(formData))
+        .then((updatedCommunity) => {
+          navigate(`/communities/${updatedCommunity.community_name}`);
         })
         .catch(async (res) => {
           console.log("Inside create community errors catch =>", res);
         });
     }
   };
-
+  console.log(community);
   return (
     <div className="community-create-edit">
       <h1>Add a New Community!</h1>
@@ -91,6 +116,9 @@ const CreateCommunity = () => {
         </div>
         <div className="community-input-div">
           <h3>Select a Community Image!</h3>
+          <div>
+            <img src={imageUrl} alt="" />
+          </div>
           <label htmlFor="imageUrl">
             <input
               name="imageUrl"
@@ -112,4 +140,4 @@ const CreateCommunity = () => {
   );
 };
 
-export default CreateCommunity;
+export default EditCommunity;
