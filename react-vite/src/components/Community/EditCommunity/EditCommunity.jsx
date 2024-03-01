@@ -31,7 +31,7 @@ const EditCommunity = () => {
       setDescription(community.description);
       setImageUrl(community.image_url);
     }
-  }, [setCommunityName, setDescription, setImageUrl]);
+  }, [setCommunityName, setDescription, setImageUrl, community]);
 
   if (!Object.values(communityObj)) return null;
   //   console.log(communityObj);
