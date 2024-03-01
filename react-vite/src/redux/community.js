@@ -2,6 +2,8 @@ const GET_COMMUNITIES = "communities/GET_COMMUNITIES";
 const CREATE_COMMUNITY = "communities/CREATE_COMMUNITY";
 const GET_ONE_COMMUNITY = "communities/GET_ONE_COMMUNITY";
 const UPDATE_COMMUNITY = "communities/UPDATE_COMMUNITY";
+const RETURN_INITIAL = "communities/RETURN_INITIAL";
+const DELETE_COMMUNITY = "communities/DELETE_COMMUNITY";
 
 const getCommunities = (communities) => {
   return {
@@ -28,6 +30,19 @@ const updateCommunity = (community) => {
   return {
     type: UPDATE_COMMUNITY,
     community,
+  };
+};
+
+export const returnInitial = () => {
+  return {
+    type: RETURN_INITIAL,
+  };
+};
+
+const deleteCommunity = (communityId) => {
+  return {
+    type: DELETE_COMMUNITY,
+    communityId,
   };
 };
 
@@ -70,16 +85,32 @@ export const thunkGetOneCommunity = (community) => async (dispatch) => {
   }
 };
 
-export const thunkUpdateCommunity = (formData) => async (dispatch) => {
-  const res = await fetch(`/api/communities/${formData.community_name}/edit`, {
-    method: "PUT",
-    body: formData,
+export const thunkUpdateCommunity =
+  (formData, communityName) => async (dispatch) => {
+    console.log("inside reducer", communityName);
+    const res = await fetch(`/api/communities/${communityName}/edit`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    if (res.ok) {
+      const community = await res.json();
+      dispatch(updateCommunity(community));
+      return community;
+    } else {
+      const errs = await res.json();
+      return errs;
+    }
+  };
+
+export const thunkDeleteCommunity = (communityId) => async (dispatch) => {
+  const res = await fetch(`/api/communities/${communityId}/delete`, {
+    method: "DELETE",
   });
 
   if (res.ok) {
-    const community = await res.json();
-    dispatch(updateCommunity(community));
-    return community;
+    dispatch(deleteCommunity(communityId));
+    return communityId;
   } else {
     const errs = await res.json();
     return errs;
@@ -106,6 +137,9 @@ function communitiesReducer(state = initialState, action) {
       const newState = { ...state };
       newState[action.community.id] = action.community;
       return newState;
+    }
+    case RETURN_INITIAL: {
+      return initialState;
     }
     default:
       return state;

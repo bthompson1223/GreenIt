@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { thunkGetOneCommunity } from "../../../redux/community";
+import {
+  thunkGetOneCommunity,
+  thunkUpdateCommunity,
+} from "../../../redux/community";
 
 const EditCommunity = () => {
   const communityObj = useSelector((state) => state.communities);
@@ -9,9 +12,10 @@ const EditCommunity = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const navigate = useNavigate();
+  const community = Object.values(communityObj)[0];
   const [communityName, setCommunityName] = useState("");
-  const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState(null);
+  const [description, setDescription] = useState(community?.description);
+  const [imageUrl, setImageUrl] = useState(community?.image_url);
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 
@@ -20,15 +24,15 @@ const EditCommunity = () => {
     dispatch(thunkGetOneCommunity(communityParam.community));
   }, [dispatch, communityParam]);
 
+  console.log("community", community);
   useEffect(() => {
     if (community?.id) {
       setCommunityName(community?.community_name);
       setDescription(community.description);
       setImageUrl(community.image_url);
     }
-  });
+  }, [setCommunityName, setDescription, setImageUrl]);
 
-  const community = Object.values(communityObj)[0];
   if (!Object.values(communityObj)) return null;
   //   console.log(communityObj);
   if (!user) return <h2>You must be logged in to edit a community!</h2>;
@@ -63,9 +67,11 @@ const EditCommunity = () => {
       formData.append("description", description);
       formData.append("image_url", imageUrl);
 
+      console.log("INSIDE HANDLE SUBMIT ========>", communityName);
+
       setImageLoading(true);
 
-      await dispatch(thunkUpdateCommunity(formData))
+      await dispatch(thunkUpdateCommunity(formData, communityParam.community))
         .then((updatedCommunity) => {
           navigate(`/communities/${updatedCommunity.community_name}`);
         })

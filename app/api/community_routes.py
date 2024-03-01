@@ -83,3 +83,19 @@ def update_community(community):
         return community.to_dict()
     
     return form.errors, 401
+
+@login_required
+@community_routes.route('/<int:communityId>/delete', methods=["DELETE"])
+def delete_community(communityId):
+    community = Community.query.get(communityId)
+
+    if not community:
+        return {'errors': {'message': 'Community not found'}}, 404
+    
+    if current_user.id is not community.owner_id:
+        return {'errors': {'message': 'Unauthorized'}}, 401
+    
+    db.session.delete(community)
+    db.session.commit()
+
+    return {'message': "Successfully deleted community"}
