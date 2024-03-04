@@ -104,6 +104,7 @@ export const thunkUpdateCommunity =
   };
 
 export const thunkDeleteCommunity = (communityId) => async (dispatch) => {
+  console.log("delete community thunk", communityId);
   const res = await fetch(`/api/communities/${communityId}/delete`, {
     method: "DELETE",
   });
@@ -140,6 +141,16 @@ function communitiesReducer(state = initialState, action) {
     }
     case RETURN_INITIAL: {
       return initialState;
+    }
+    case DELETE_COMMUNITY: {
+      const newState = { ...state };
+      delete newState[action.communityId];
+      return newState;
+    }
+    case UPDATE_COMMUNITY: {
+      const newState = { ...state };
+      newState[action.community.id] = action.community;
+      return newState;
     }
     default:
       return state;

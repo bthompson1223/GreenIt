@@ -95,6 +95,8 @@ def delete_community(communityId):
     if current_user.id is not community.owner_id:
         return {'errors': {'message': 'Unauthorized'}}, 401
     
+    remove_file_from_s3(community.image_url)
+    
     db.session.delete(community)
     db.session.commit()
 

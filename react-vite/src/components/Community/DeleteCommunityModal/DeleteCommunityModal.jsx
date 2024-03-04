@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import { thunkDeleteCommunity } from "../../../redux/community";
+import { returnInitial, thunkDeleteCommunity } from "../../../redux/community";
 import { useNavigate } from "react-router-dom";
 
 const DeleteCommunityModal = ({ community }) => {
@@ -10,7 +10,8 @@ const DeleteCommunityModal = ({ community }) => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    dispatch(thunkDeleteCommunity(community.id));
+    await dispatch(thunkDeleteCommunity(community[0].id));
+    dispatch(returnInitial());
     closeModal();
     navigate("/");
   };
