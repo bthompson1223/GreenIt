@@ -146,6 +146,11 @@ function communitiesReducer(state = initialState, action) {
       delete newState[action.communityId];
       return newState;
     }
+    case UPDATE_COMMUNITY: {
+      const newState = { ...state };
+      newState[action.community.id] = action.community;
+      return newState;
+    }
     default:
       return state;
   }

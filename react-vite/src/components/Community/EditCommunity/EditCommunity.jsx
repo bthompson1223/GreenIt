@@ -27,7 +27,7 @@ const EditCommunity = () => {
   console.log("community", community);
   useEffect(() => {
     if (community?.id) {
-      setCommunityName(community?.community_name);
+      setCommunityName(community.community_name);
       setDescription(community.description);
       setImageUrl(community.image_url);
     }

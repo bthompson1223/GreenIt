@@ -4,18 +4,27 @@ import { Link, useParams } from "react-router-dom";
 import { thunkGetOneCommunity } from "../../../redux/community";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeleteCommunityModal from "../DeleteCommunityModal/DeleteCommunityModal";
+import { thunkGetAllPosts } from "../../../redux/post";
+import PostList from "../../Posts/PostList/PostList";
 
 const CommunityDetail = () => {
-  const communitySateObj = useSelector((state) => state.communities);
+  const communityStateObj = useSelector((state) => state.communities);
+  const postsObj = useSelector((state) => state.posts);
   const communityName = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(thunkGetOneCommunity(communityName.community));
+    dispatch(thunkGetAllPosts());
   }, [dispatch, communityName]);
 
-  const communityObj = Object.values(communitySateObj)[0];
-  console.log(communityObj);
+  console.log("posts", postsObj);
+
+  const communityObj = Object.values(communityStateObj)[0];
+
+  const communityPosts = Object.values(postsObj).filter(
+    (post) => post.community_id == communityObj?.id
+  );
   return (
     <div>
       <h2>{communityName.community}</h2>
@@ -29,6 +38,10 @@ const CommunityDetail = () => {
         buttonText="Delete"
         modalComponent={<DeleteCommunityModal community={communityObj} />}
       />
+
+      <div>
+        <PostList posts={communityPosts} />
+      </div>
     </div>
   );
 };
