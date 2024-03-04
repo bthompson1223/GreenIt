@@ -20,12 +20,11 @@ class Community(db.Model):
 
     def to_dict(self):
         owner = self.owner.to_dict()
-
         return {
             'id': self.id,
             'owner_id': self.owner_id,
             'community_name': self.community_name,
             'description': self.description,
             'image_url': self.image_url,
-            'owner': owner
+            'owner': owner,
         }
