@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { thunkGetSinglePost } from "../../../redux/post";
+import { returnInitialPosts, thunkGetSinglePost } from "../../../redux/post";
+import OpenModalButton from "../../OpenModalButton/OpenModalButton";
+import DeletePostModal from "../DeletePostModal/DeletePostModal";
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,8 @@ const PostDetail = () => {
 
   useEffect(() => {
     dispatch(thunkGetSinglePost(postId));
+
+    return () => dispatch(returnInitialPosts());
   }, [dispatch]);
 
   if (!Object.values(postObj).length) return null;
@@ -35,6 +39,11 @@ const PostDetail = () => {
           <p>{post.body}</p>
         </div>
       </div>
+      <Link to={`/posts/${postId}/edit`}>Edit Post</Link>
+      <OpenModalButton
+        buttonText="Delete"
+        modalComponent={<DeletePostModal post={post} />}
+      />
     </div>
   );
 };

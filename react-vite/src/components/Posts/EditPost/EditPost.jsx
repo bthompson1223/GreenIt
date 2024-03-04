@@ -1,27 +1,38 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { thunkCreatePost } from "../../../redux/post";
+import { useNavigate, useParams } from "react-router-dom";
+import { thunkGetSinglePost, thunkUpdatePost } from "../../../redux/post";
 import { thunkGetCommunities } from "../../../redux/community";
 
-const CreatePost = () => {
+const EditPost = () => {
+  const postObj = useSelector((state) => state.posts);
+  const { postId } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const communitiesObj = useSelector((state) => state.communities);
   const navigate = useNavigate();
+  const post = Object.values(postObj)[0];
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
   const [communityId, setCommunityId] = useState(1);
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 
   useEffect(() => {
+    dispatch(thunkGetSinglePost(postId));
     dispatch(thunkGetCommunities());
   }, [dispatch]);
 
-  if (!user) return <h2>You must be logged in to create a post!</h2>;
+  if (!Object.values(postObj).length) return null;
   if (!Object.values(communitiesObj).length) return null;
+
+  if (!postTitle.length && !postBody.length) {
+    setPostTitle(post.title);
+    setPostBody(post.body);
+    setImageUrl(post.image_url);
+    setCommunityId(post.community_id);
+  }
 
   const communities = Object.values(communitiesObj);
 
@@ -31,7 +42,9 @@ const CreatePost = () => {
     </option>
   ));
 
-  console.log(communityId);
+  if (!user) return <h2>You must be logged in to edit a post!</h2>;
+
+  if (user.id !== post.owner_id) return <h2>Unauthorized</h2>;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +60,7 @@ const CreatePost = () => {
       setErrors(validationErrors);
     } else {
       const formData = new FormData();
-      console.log("image url", imageUrl);
+      console.log("Inside handleSubmit imageUrl", imageUrl);
 
       formData.append("title", postTitle);
       formData.append("body", postBody);
@@ -56,21 +69,21 @@ const CreatePost = () => {
 
       setImageLoading(true);
 
-      await dispatch(thunkCreatePost(formData))
-        .then((createdPost) => {
-          navigate(`/posts/${createdPost.id}`);
+      await dispatch(thunkUpdatePost(postId, formData))
+        .then((updatedPost) => {
+          navigate(`/posts/${updatedPost.id}`);
         })
         .catch(async (res) => {
-          console.log("Inside create post errors catch =>", res);
+          console.log("Inside update post errors catch =>", res);
         });
     }
   };
 
   return (
     <div className="post-create-edit">
-      <h1>Create a Post!</h1>
+      <h1>Edit Your Post!</h1>
       <form
-        className="create-post-form"
+        className="edit-post-form"
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -119,10 +132,13 @@ const CreatePost = () => {
         </div>
         <div className="post-input-div">
           <h3>Image File</h3>
-          <label htmlFor="imageUrl">
+          <div>
+            <img src={imageUrl} alt="" />
+          </div>
+          <label htmlFor="image">
             <input
-              name="imageUrl"
               type="file"
+              name="image"
               accept="image/*"
               onChange={(e) => setImageUrl(e.target.files[0])}
               className="input-create"
@@ -131,11 +147,11 @@ const CreatePost = () => {
         </div>
 
         <button type="submit" className="create-post button">
-          Create Post
+          Edit Post
         </button>
       </form>
     </div>
   );
 };
 
-export default CreatePost;
+export default EditPost;

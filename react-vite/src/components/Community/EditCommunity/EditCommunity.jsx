@@ -14,8 +14,8 @@ const EditCommunity = () => {
   const navigate = useNavigate();
   const community = Object.values(communityObj)[0];
   const [communityName, setCommunityName] = useState("");
-  const [description, setDescription] = useState(community?.description);
-  const [imageUrl, setImageUrl] = useState(community?.image_url);
+  const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 
@@ -24,7 +24,6 @@ const EditCommunity = () => {
     dispatch(thunkGetOneCommunity(communityParam.community));
   }, [dispatch, communityParam]);
 
-  console.log("community", community);
   useEffect(() => {
     if (community?.id) {
       setCommunityName(community.community_name);

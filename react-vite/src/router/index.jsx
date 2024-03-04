@@ -8,6 +8,7 @@ import CreateCommunity from "../components/Community/CreateCommunity/CreateCommu
 import EditCommunity from "../components/Community/EditCommunity/EditCommunity";
 import PostDetail from "../components/Posts/PostDetail/PostDetail";
 import CreatePost from "../components/Posts/CreatePost/CreatePost";
+import EditPost from "../components/Posts/EditPost/EditPost";
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +55,17 @@ export const router = createBrowserRouter([
         children: [
           {
             path: ":postId",
-            element: <PostDetail />,
+
+            children: [
+              {
+                element: <PostDetail />,
+                index: true,
+              },
+              {
+                path: "edit",
+                element: <EditPost />,
+              },
+            ],
           },
           {
             path: "new",

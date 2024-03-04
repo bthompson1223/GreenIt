@@ -4,6 +4,7 @@ const LOAD_CURRENT_USER_POSTS = "posts/LOAD_CURRENT_USER_POSTS";
 const CREATE_POST = "posts/CREATE_POST";
 const UPDATE_POST = "posts/UPDATE_POST";
 const DELETE_POST = "posts/DELETE_POST";
+const RETURN_INITIAL = "posts/RETURN_INITIAL";
 
 const createPost = (post) => ({
   type: CREATE_POST,
@@ -35,6 +36,10 @@ const deletePost = (postId) => ({
   postId,
 });
 
+export const returnInitialPosts = () => ({
+  type: RETURN_INITIAL,
+});
+
 export const thunkGetAllPosts = () => async (dispatch) => {
   const res = await fetch("/api/posts/");
   if (res.ok) {
@@ -48,10 +53,11 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 };
 
 export const thunkUpdatePost = (postId, updatedPost) => async (dispatch) => {
-  const res = await fetch(`/api/posts/${postId}`, {
+  const res = await fetch(`/api/posts/${postId}/edit`, {
     method: "PUT",
     body: updatedPost,
   });
+  console.log("Inside update post reducer", updatedPost);
 
   if (res.ok) {
     const updatedPostData = await res.json();
@@ -92,7 +98,7 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
 };
 
 export const thunkDeletePost = (postId) => async (dispatch) => {
-  const res = await fetch(`/api/posts/${postId}`, {
+  const res = await fetch(`/api/posts/${postId}/delete`, {
     method: "DELETE",
   });
 
@@ -146,8 +152,13 @@ const postReducer = (state = initialState, action) => {
     }
     case DELETE_POST: {
       const newState = { ...state };
-      delete newState[action.post.id];
+      console.log("before delete =>", newState);
+      delete newState[action.postId];
+      console.log("after delete =>", newState);
       return newState;
+    }
+    case RETURN_INITIAL: {
+      return initialState;
     }
     default:
       return state;

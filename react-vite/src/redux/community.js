@@ -104,6 +104,7 @@ export const thunkUpdateCommunity =
   };
 
 export const thunkDeleteCommunity = (communityId) => async (dispatch) => {
+  console.log("delete community thunk", communityId);
   const res = await fetch(`/api/communities/${communityId}/delete`, {
     method: "DELETE",
   });

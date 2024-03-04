@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { thunkGetOneCommunity } from "../../../redux/community";
+import { returnInitial, thunkGetOneCommunity } from "../../../redux/community";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeleteCommunityModal from "../DeleteCommunityModal/DeleteCommunityModal";
 import { thunkGetAllPosts } from "../../../redux/post";
@@ -18,12 +18,13 @@ const CommunityDetail = () => {
     dispatch(thunkGetAllPosts());
   }, [dispatch, communityName]);
 
-  console.log("posts", postsObj);
+  const communityObj = Object.values(communityStateObj)?.filter(
+    (community) => community.community_name === communityName.community
+  );
 
-  const communityObj = Object.values(communityStateObj)[0];
-
+  console.log("posts", communityObj);
   const communityPosts = Object.values(postsObj).filter(
-    (post) => post.community_id == communityObj?.id
+    (post) => post.community_id == communityObj[0]?.id
   );
   return (
     <div>
