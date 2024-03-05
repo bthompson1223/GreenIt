@@ -60,7 +60,7 @@ users = [
         "first_name": 'Mister',
         "last_name": 'Anderson',
         "profile_img": "https://vghaven-bucket.s3.us-east-2.amazonaws.com/7_Issac%2BWM.png",
-        "email": 'guest_services@launchpad.io',
+        "email": 'guest_services@vghaven.io',
         "password": 'password'
 
       }
