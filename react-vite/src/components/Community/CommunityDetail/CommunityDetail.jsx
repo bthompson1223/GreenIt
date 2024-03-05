@@ -22,6 +22,12 @@ const CommunityDetail = () => {
     (community) => community.community_name === communityName.community
   );
 
+  let community;
+
+  if (communityObj.length) {
+    community = communityObj[0];
+  }
+
   console.log("posts", communityObj);
   const communityPosts = Object.values(postsObj).filter(
     (post) => post.community_id == communityObj[0]?.id
@@ -34,12 +40,14 @@ const CommunityDetail = () => {
         community={communityObj}
       >
         Edit
+      </Link>{" "}
+      <Link to="/posts/new" community={community}>
+        Create Post
       </Link>
       <OpenModalButton
         buttonText="Delete"
         modalComponent={<DeleteCommunityModal community={communityObj} />}
       />
-
       <div>
         <PostList posts={communityPosts} />
       </div>

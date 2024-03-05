@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { thunkCreatePost } from "../../../redux/post";
 import { thunkGetCommunities } from "../../../redux/community";
 
-const CreatePost = () => {
+const CreatePost = ({ community }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const communitiesObj = useSelector((state) => state.communities);
@@ -12,7 +12,7 @@ const CreatePost = () => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
-  const [communityId, setCommunityId] = useState(1);
+  const [communityId, setCommunityId] = useState(community?.id || 1);
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 
@@ -24,6 +24,7 @@ const CreatePost = () => {
   if (!Object.values(communitiesObj).length) return null;
 
   const communities = Object.values(communitiesObj);
+  console.log("create post", community);
 
   const communityOptions = communities.map((community) => (
     <option value={community.id} key={community.id}>

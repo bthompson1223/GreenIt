@@ -1,0 +1,97 @@
+.profile-dropdown.hidden {
+  display: none;
+}
+
+.profile-dropdown {
+  border: 1px solid grey;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  margin-right: 40px;
+  gap: 5px;
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-logout {
+  min-width: 60px;
+}
+
+.login-logout li {
+  cursor: pointer;
+}
+
+.menu {
+  padding: 10px 20px 10px 20px;
+  margin-right: 3.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.logout-button {
+  margin-top: 1rem;
+  border-top: 1px solid grey;
+}
+
+.lo-button {
+  display: flex;
+  background-color: #068859;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.text {
+  font-weight: 500;
+}
+
+.text-email {
+  padding-left: 0px;
+  margin-bottom: 8px;
+}
+
+.manage-projects {
+  padding-left: 0px;
+  font-weight: 500;
+}
+
+.buttoncontainer {
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+}
+
+.manage-nav {
+  text-decoration: none;
+  color: black;
+  padding-top: 3px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.root {
+  max-width: fit-content;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 10px;
+}
+
+.profile-button-container {
+  border: 1px solid black;
+  display: flex;
+  width: 13rem;
+  align-items: center;
+  justify-content: space-evenly;
+  /* padding-right: 1rem; */
+  border-radius: 10px;
+}

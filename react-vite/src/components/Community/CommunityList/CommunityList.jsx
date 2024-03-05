@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { returnInitial, thunkGetCommunities } from "../../../redux/community";
 import { Link } from "react-router-dom";
+import "./CommunityList.css";
 
 const CommunityList = () => {
   const communitiesObj = useSelector((state) => state.communities);
@@ -17,15 +18,17 @@ const CommunityList = () => {
   const communities = Object.values(communitiesObj);
 
   return (
-    <div>
-      <ul>
+    <div className="community-list-container">
+      <h2 className="community-list-title">Communities</h2>
+      <ul className="community-list">
         {communities.map((community) => (
           <li key={community.id}>
             <Link
               to={`/communities/${community.community_name}`}
               community={community}
+              className="community-link"
             >
-              {community.community_name}
+              vg/{community.community_name}
             </Link>
           </li>
         ))}

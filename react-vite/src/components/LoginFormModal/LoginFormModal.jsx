@@ -38,6 +38,7 @@ function LoginFormModal() {
       <h1 className="login-signup">Log In</h1>
       <form className="login-signup-form" onSubmit={handleSubmit}>
         <label>
+          <p>Email: </p>
           <input
             type="text"
             value={email}
@@ -48,6 +49,7 @@ function LoginFormModal() {
         </label>
         {errors.email && <p className="input-errors">{errors.email}</p>}
         <label>
+          <p>Password: </p>
           <input
             type="password"
             value={password}
