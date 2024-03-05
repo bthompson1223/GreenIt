@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { thunkDeletePost } from "../../../redux/post";
+import "./DeletePostModal.css";
 
 const DeletePostModal = ({ post }) => {
   const dispatch = useDispatch();

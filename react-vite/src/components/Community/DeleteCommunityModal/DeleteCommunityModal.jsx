@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { returnInitial, thunkDeleteCommunity } from "../../../redux/community";
 import { useNavigate } from "react-router-dom";
+import "./DeleteCommunityModal.css";
 
 const DeleteCommunityModal = ({ community }) => {
   const dispatch = useDispatch();
