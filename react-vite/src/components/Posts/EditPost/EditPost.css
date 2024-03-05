@@ -1,0 +1,90 @@
+.post-create-edit {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  padding-top: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+/* h1 */
+.post-create-edit h1 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+/* h3 */
+.post-create-edit h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* input divs */
+.post-input-div {
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* label and input */
+.post-create-edit label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.post-create-edit select,
+.post-create-edit input[type="text"],
+.post-create-edit input[type="number"],
+.post-create-edit textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 2px;
+}
+
+.post-input-div input[type="file"] {
+  padding: 10px;
+}
+
+.post-create-edit textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.post-create-edit .post-errors p {
+  color: #d9534f;
+  font-size: 12px;
+  /* margin-top: -5px;
+      margin-bottom: 15px; */
+}
+
+.post-errors {
+  /* margin-left: 0;
+      padding-left: 0; */
+  min-height: 18px;
+}
+
+.post-create-edit button[type="submit"] {
+  padding: 10px 15px;
+  border: none;
+  background-color: darkgreen;
+  color: white;
+  cursor: pointer;
+  width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.post-create-edit button[type="submit"]:hover {
+  background-color: #005738;
+}
+
+.post-input-div img {
+  max-width: 100%;
+  margin-top: 10px;
+}

@@ -1,7 +1,6 @@
 .splash-container {
   display: flex;
   gap: 20px;
-  padding-top: 5%;
   align-items: flex-start;
   justify-content: space-evenly;
   width: 100%;

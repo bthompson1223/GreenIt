@@ -3,11 +3,13 @@ import "./PostList.css";
 
 const PostList = ({ posts }) => {
   if (!posts) return null;
+  console.log("inside post list =>", posts);
 
   return (
     <div className="post-list-container">
       <h2>Posts</h2>
       <ul className="post-list">
+        {!posts.length && <h3>No posts yet!</h3>}
         {posts.map((post) => (
           <li key={post.id}>
             <div className="post-container">
@@ -23,7 +25,7 @@ const PostList = ({ posts }) => {
               </div>
               <Link to={`/posts/${post.id}`} className="post-details">
                 <div className="post-details-title">
-                  <p>{post.title}</p>
+                  <h3>{post.title}</h3>
                 </div>
                 {post.image_url && (
                   <img
@@ -33,7 +35,12 @@ const PostList = ({ posts }) => {
                   />
                 )}
                 <div className="post-details-body">
-                  <p>{post.body}</p>
+                  <p>
+                    {post.body.slice(0, 50)}
+                    {post.body.length !== post.body.slice(0, 50).length && (
+                      <span>...</span>
+                    )}
+                  </p>
                 </div>
               </Link>
             </div>

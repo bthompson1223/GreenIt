@@ -8,6 +8,7 @@ import "./SplashPage.css";
 
 const SplashPage = () => {
   const postsObj = useSelector((state) => state.posts);
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,14 +25,16 @@ const SplashPage = () => {
           <h2>Home</h2>
           <p>Welcome to VGHaven!</p>
           <p>View posts and visit gaming communities that interest you!</p>
-          <div className="create-links">
-            <Link to="/posts/new" className="splash-create-link">
-              Create Post
-            </Link>{" "}
-            <Link to="/communities/new" className="splash-create-link">
-              Create Community
-            </Link>
-          </div>
+          {user && (
+            <div className="create-links">
+              <Link to="/posts/new" className="splash-create-link">
+                Create Post
+              </Link>{" "}
+              <Link to="/communities/new" className="splash-create-link">
+                Create Community
+              </Link>
+            </div>
+          )}
         </div>
         <div className="splash-about">
           <h2>Dev Members</h2>

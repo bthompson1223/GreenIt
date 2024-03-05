@@ -6,6 +6,8 @@ import {
   thunkUpdateCommunity,
 } from "../../../redux/community";
 
+import "./EditCommunity.css";
+
 const EditCommunity = () => {
   const communityObj = useSelector((state) => state.communities);
   const communityParam = useParams();

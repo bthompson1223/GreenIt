@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkCreatePost } from "../../../redux/post";
 import { thunkGetCommunities } from "../../../redux/community";
+import "./CreatePost.css";
 
-const CreatePost = ({ community }) => {
+const CreatePost = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const communitiesObj = useSelector((state) => state.communities);
@@ -12,7 +13,7 @@ const CreatePost = ({ community }) => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
-  const [communityId, setCommunityId] = useState(community?.id || 1);
+  const [communityId, setCommunityId] = useState(1);
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 
@@ -24,7 +25,7 @@ const CreatePost = ({ community }) => {
   if (!Object.values(communitiesObj).length) return null;
 
   const communities = Object.values(communitiesObj);
-  console.log("create post", community);
+  console.log("create post", props);
 
   const communityOptions = communities.map((community) => (
     <option value={community.id} key={community.id}>
@@ -32,7 +33,7 @@ const CreatePost = ({ community }) => {
     </option>
   ));
 
-  console.log(communityId);
+  // console.log(community);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,8 +106,7 @@ const CreatePost = ({ community }) => {
         <div className="post-input-div">
           <h3>Post Body</h3>
           <label htmlFor="body">
-            <input
-              type="text"
+            <textarea
               name="body"
               value={postBody}
               onChange={(e) => setPostBody(e.target.value)}
