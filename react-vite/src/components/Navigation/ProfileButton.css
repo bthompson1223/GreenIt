@@ -16,10 +16,16 @@
 
 .login-logout {
   min-width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .login-logout li {
   cursor: pointer;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .menu {
@@ -94,4 +100,8 @@ ul {
   justify-content: space-evenly;
   /* padding-right: 1rem; */
   border-radius: 10px;
+}
+
+.profile-button-container:hover {
+  cursor: pointer;
 }

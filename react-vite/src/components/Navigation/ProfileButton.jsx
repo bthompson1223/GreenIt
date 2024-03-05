@@ -65,7 +65,7 @@ function ProfileButton() {
       <div className="profile-button-container" onClick={toggleMenu}>
         {profileImage}
         <div className="info">
-          <p>u/{user ? user.username : "Log in/Sign up!"}</p>
+          <p>{user ? `u/${user.username}` : "Log in/Sign up!"}</p>
         </div>
       </div>
 
@@ -80,7 +80,7 @@ function ProfileButton() {
               </li>
             </>
           ) : (
-            <>
+            <div className="login-logout">
               <OpenModalMenuItem
                 itemText="Log In"
                 onItemClick={closeMenu}
@@ -91,7 +91,7 @@ function ProfileButton() {
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
-            </>
+            </div>
           )}
         </ul>
       )}

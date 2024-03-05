@@ -1,0 +1,57 @@
+.splash-container {
+  display: flex;
+  gap: 20px;
+  padding-top: 5%;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 33%;
+  /* position: sticky; */
+  /* Work on sticky positioning */
+  /* right: 15%; */
+}
+
+.splash-about {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-bottom: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.dev-info {
+  align-self: center;
+  justify-self: center;
+}
+
+.splash-about > h2 {
+  align-self: center;
+}
+
+.create-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.splash-create-link {
+  color: white;
+  border: 1px solid grey;
+  background-color: darkgreen;
+  padding: 2%;
+  text-decoration: none;
+}
+
+.dev-link,
+.dev-link:visited {
+  color: darkgreen;
+  text-decoration: none;
+}

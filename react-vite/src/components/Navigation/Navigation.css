@@ -17,9 +17,9 @@
   flex: 1;
 }
 
-.nav-container li {
+/* .nav-container li {
   flex: 1;
-}
+} */
 
 .new-project-button-li {
   margin-right: auto;
@@ -40,6 +40,7 @@
   padding-top: 8px;
   margin: 0 auto;
   justify-self: center;
+  padding-left: 10%;
 }
 
 .logo-li {
