@@ -47,7 +47,7 @@ const CommunityDetail = () => {
       </div>
       <div className="community-post-details-rules">
         <div className="community-post-list">
-          <PostList posts={communityPosts} />
+          <PostList passedInPosts={communityPosts} />
         </div>
 
         <div className="detail-rules">
@@ -58,7 +58,10 @@ const CommunityDetail = () => {
             </div>
             <div className="community-create-edit-delete">
               {user && (
-                <Link to="/posts/new" community={community}>
+                <Link
+                  to={`/posts/new/?community=${community?.id}`}
+                  community={community}
+                >
                   Create Post
                 </Link>
               )}
@@ -73,7 +76,7 @@ const CommunityDetail = () => {
                   <OpenModalButton
                     buttonText="Delete Community"
                     modalComponent={
-                      <DeleteCommunityModal community={communityObj} />
+                      <DeleteCommunityModal community={communityObj[0]} />
                     }
                   />
                 </>

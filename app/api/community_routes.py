@@ -23,6 +23,16 @@ def get_one_community(community):
     return community.to_dict()
 
 @login_required
+@community_routes.route('/current')
+def get_current_user_communities():
+    communities = Community.query.filter(Community.owner_id == current_user.id).all()
+
+    if not communities:
+        return {'errors': {'message': 'Communities not found'}}, 404
+    else:
+        return [community.to_dict() for community in communities]
+
+@login_required
 @community_routes.route('/new', methods=['POST'])
 def create_community():
     form = CommunityForm()

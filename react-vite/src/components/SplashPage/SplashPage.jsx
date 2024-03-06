@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import "./SplashPage.css";
 
 const SplashPage = () => {
-  const postsObj = useSelector((state) => state.posts);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -15,11 +14,9 @@ const SplashPage = () => {
     dispatch(thunkGetAllPosts());
   }, [dispatch]);
 
-  const posts = Object.values(postsObj);
-
   return (
     <div className="splash-container">
-      <PostList posts={posts} />
+      <PostList />
       <div className="details-container">
         <div className="splash-about">
           <h2>Home</h2>

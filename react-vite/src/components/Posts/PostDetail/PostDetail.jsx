@@ -32,7 +32,11 @@ const PostDetail = () => {
             to={`/communities/${post.community.community_name}`}
             className="community-link"
           >
-            vg/{post.community.community_name}
+            vg/{post.community.community_name.slice(0, 25)}
+            {post.community.community_name.length !==
+              post.community.community_name.slice(0, 50).length && (
+              <span>...</span>
+            )}
           </Link>
           <p>Posted by u/{post.poster.username}</p>
         </div>
@@ -41,12 +45,14 @@ const PostDetail = () => {
             <p>{post.title}</p>
           </div>
           <div className="post-image-container">
-            {post.image_url && (
+            {post.image_url ? (
               <img
                 src={post.image_url}
                 alt="post-image"
                 className="post-detail-image"
               />
+            ) : (
+              <div className="post-detail-image line"></div>
             )}
           </div>
           <div className="post-details-body-container">

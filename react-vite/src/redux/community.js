@@ -4,6 +4,7 @@ const GET_ONE_COMMUNITY = "communities/GET_ONE_COMMUNITY";
 const UPDATE_COMMUNITY = "communities/UPDATE_COMMUNITY";
 const RETURN_INITIAL = "communities/RETURN_INITIAL";
 const DELETE_COMMUNITY = "communities/DELETE_COMMUNITY";
+const GET_CURRENT_USER_COMMUNITIES = "communities/GET_CURRENT_USER_COMMUNITY";
 
 const getCommunities = (communities) => {
   return {
@@ -43,6 +44,13 @@ const deleteCommunity = (communityId) => {
   return {
     type: DELETE_COMMUNITY,
     communityId,
+  };
+};
+
+const getCurrentUserCommunities = (communities) => {
+  return {
+    type: GET_CURRENT_USER_COMMUNITIES,
+    communities,
   };
 };
 
@@ -116,6 +124,19 @@ export const thunkDeleteCommunity = (communityId) => async (dispatch) => {
   }
 };
 
+export const thunkGetCurrentUserCommunities = () => async (dispatch) => {
+  const res = await fetch("/api/communities/current");
+
+  if (res.ok) {
+    const communities = await res.json();
+    dispatch(getCurrentUserCommunities(communities));
+    return communities;
+  } else {
+    const errs = await res.json();
+    return errs;
+  }
+};
+
 const initialState = {};
 
 function communitiesReducer(state = initialState, action) {
@@ -148,6 +169,13 @@ function communitiesReducer(state = initialState, action) {
     case UPDATE_COMMUNITY: {
       const newState = { ...state };
       newState[action.community.id] = action.community;
+      return newState;
+    }
+    case GET_CURRENT_USER_COMMUNITIES: {
+      const newState = {};
+      action.communities.forEach(
+        (community) => (newState[community.id] = community)
+      );
       return newState;
     }
     default:

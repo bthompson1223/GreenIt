@@ -10,6 +10,10 @@
   gap: 20px;
 }
 
+.community-list-container:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 .community-list-title {
   margin-top: 0;
 }
@@ -26,7 +30,39 @@
   text-decoration: none;
 }
 
-.community-link:active,
-.community-link:visited {
-  color: darkgreen;
+.community-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  padding-bottom: 1%;
+}
+
+.community-link-container > a:first-child:hover {
+  background-color: darkgreen;
+  color: white;
+  text-decoration: none;
+  box-shadow: 2px 3px 2px green;
+}
+
+.tiny-edit-delete > button,
+.tiny-edit-delete > a {
+  border: none;
+  text-decoration: none;
+  background-color: darkgreen;
+  color: white;
+  font-size: smaller;
+  text-align: center;
+  padding: 2%;
+}
+
+.tiny-edit-delete > button:hover,
+.tiny-edit-delete > a:hover {
+  cursor: pointer;
+  background-color: green;
+}
+
+.tiny-edit-delete {
+  display: flex;
+  gap: 5px;
 }

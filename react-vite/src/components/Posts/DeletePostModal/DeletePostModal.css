@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+.delete-post-modal:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 .delete-post-modal h2 {
   font-weight: 500;
   margin-top: 0;

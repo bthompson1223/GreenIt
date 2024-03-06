@@ -76,7 +76,14 @@ function ProfileButton() {
               <li className="text">{user.username}</li>
               <li className="text-email">{user.email}</li>
               <li>
-                <Link to="/posts/current">My Posts</Link>
+                <Link to="/posts/current" onClick={closeMenu}>
+                  My Posts
+                </Link>
+              </li>
+              <li>
+                <Link to="/communities/current" onClick={closeMenu}>
+                  My Communities
+                </Link>
               </li>
               <li>
                 <button onClick={logout} className="logout-button">
