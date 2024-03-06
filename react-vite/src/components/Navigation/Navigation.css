@@ -19,14 +19,6 @@
   /* padding-top: 2%; */
 }
 
-/* .nav-container li {
-  flex: 1;
-} */
-
-.new-project-button-li {
-  margin-right: auto;
-}
-
 .button-container {
   display: flex;
   flex-direction: column;
@@ -40,32 +32,19 @@
   font-weight: bolder;
   color: #068859;
   padding-top: 8px;
+  padding-bottom: 8px;
   margin: 0 auto;
   justify-self: center;
-  padding-left: 10%;
+}
+
+.logo:hover {
+  background-color: #068859;
+  color: white;
+  border-radius: 15px;
 }
 
 .logo-li {
   display: flex;
   justify-content: center;
-}
-
-.new-project {
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  cursor: pointer;
-  background-color: #068859;
-  color: white;
-  text-decoration: none;
-}
-
-.new-project:hover {
-  background-color: #005738;
-}
-
-.new-project-menu .empty {
-  display: flex;
-  gap: 5px;
-  min-width: 182px;
+  width: 10%;
 }

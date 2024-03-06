@@ -9,6 +9,8 @@ import EditCommunity from "../components/Community/EditCommunity/EditCommunity";
 import PostDetail from "../components/Posts/PostDetail/PostDetail";
 import CreatePost from "../components/Posts/CreatePost/CreatePost";
 import EditPost from "../components/Posts/EditPost/EditPost";
+import CurrentPosts from "../components/Posts/CurrentPosts/CurrentPosts";
+import CurrentCommunities from "../components/Community/CurrentCommunities/CurrentCommunities";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ export const router = createBrowserRouter([
             path: "new",
             element: <CreateCommunity />,
           },
+          {
+            path: "current",
+            element: <CurrentCommunities />,
+          },
         ],
       },
       {
@@ -70,6 +76,10 @@ export const router = createBrowserRouter([
           {
             path: "new",
             element: <CreatePost />,
+          },
+          {
+            path: "current",
+            element: <CurrentPosts />,
           },
         ],
       },

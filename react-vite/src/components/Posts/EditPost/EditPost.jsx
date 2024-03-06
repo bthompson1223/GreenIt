@@ -145,9 +145,12 @@ const EditPost = () => {
           </label>
         </div>
 
-        <button type="submit" className="create-post button">
-          Edit Post
-        </button>
+        {!imageLoading && (
+          <button type="submit" className="create-post button">
+            Edit Post
+          </button>
+        )}
+        {imageLoading && <p className="loading">Loading...</p>}
       </form>
     </div>
   );

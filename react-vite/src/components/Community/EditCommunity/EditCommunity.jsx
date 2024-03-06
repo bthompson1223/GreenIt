@@ -131,9 +131,12 @@ const EditCommunity = () => {
         <div className="community-errors">
           {errors.imageUrl && <p>{errors.imageUrl}</p>}
         </div>
-        <button type="submit" className="create-a-community button">
-          Create Community
-        </button>
+        {!imageLoading && (
+          <button type="submit" className="create-a-community button">
+            Edit Community
+          </button>
+        )}
+        {imageLoading && <p className="loading">Loading...</p>}
       </form>
     </div>
   );

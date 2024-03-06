@@ -1,28 +1,32 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { returnInitial, thunkGetCommunities } from "../../../redux/community";
-import { Link } from "react-router-dom";
+import {
+  returnInitial,
+  thunkGetCurrentUserCommunities,
+} from "../../../redux/community";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeleteCommunityModal from "../DeleteCommunityModal/DeleteCommunityModal";
-import "./CommunityList.css";
+import { Link } from "react-router-dom";
 
-const CommunityList = () => {
+const CurrentCommunities = () => {
   const communitiesObj = useSelector((state) => state.communities);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(thunkGetCommunities());
+    dispatch(thunkGetCurrentUserCommunities());
     return () => dispatch(returnInitial());
   }, [dispatch]);
 
   if (!communitiesObj) return null;
+  if (!user) return <h2>You must be logged in to see your communities!</h2>;
 
   const communities = Object.values(communitiesObj);
 
   return (
     <div className="community-list-container">
       <h2 className="community-list-title">Communities</h2>
+      {!communities.length && <h3>No communities yet!</h3>}
       <ul className="community-list">
         {communities.map((community) => (
           <li key={community.id}>
@@ -32,11 +36,7 @@ const CommunityList = () => {
                 community={community}
                 className="community-link"
               >
-                vg/{community.community_name.slice(0, 17)}
-                {community.community_name.length !==
-                  community.community_name.slice(0, 50).length && (
-                  <span>...</span>
-                )}
+                vg/{community.community_name}
               </Link>
 
               {community.owner_id === user?.id ? (
@@ -69,4 +69,4 @@ const CommunityList = () => {
   );
 };
 
-export default CommunityList;
+export default CurrentCommunities;

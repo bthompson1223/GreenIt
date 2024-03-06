@@ -21,6 +21,16 @@ def get_one_post(postId):
         return post.to_dict()
     else:
         return {'errors': {'message': 'Post not found'}}, 404
+
+@login_required   
+@post_routes.route('/current')
+def get_current_user_posts():
+    posts = Post.query.filter(current_user.id == Post.owner_id).all()
+
+    if posts:
+        return [post.to_dict() for post in posts]
+    else:
+        return {'errors': {'message': 'Post not found'}}, 404
     
 @login_required
 @post_routes.route('/new', methods=["POST"])

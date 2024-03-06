@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { returnInitial, thunkGetOneCommunity } from "../../../redux/community";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeleteCommunityModal from "../DeleteCommunityModal/DeleteCommunityModal";
-import { thunkGetAllPosts } from "../../../redux/post";
+import { returnInitialPosts, thunkGetAllPosts } from "../../../redux/post";
 import PostList from "../../Posts/PostList/PostList";
 import "./CommunityDetail.css";
 
@@ -18,6 +18,8 @@ const CommunityDetail = () => {
   useEffect(() => {
     dispatch(thunkGetOneCommunity(communityName.community));
     dispatch(thunkGetAllPosts());
+
+    return () => dispatch(returnInitialPosts());
   }, [dispatch, communityName]);
 
   const communityObj = Object.values(communityStateObj)?.filter(
@@ -45,7 +47,7 @@ const CommunityDetail = () => {
       </div>
       <div className="community-post-details-rules">
         <div className="community-post-list">
-          <PostList posts={communityPosts} />
+          <PostList passedInPosts={communityPosts} />
         </div>
 
         <div className="detail-rules">
@@ -56,7 +58,10 @@ const CommunityDetail = () => {
             </div>
             <div className="community-create-edit-delete">
               {user && (
-                <Link to="/posts/new" community={community}>
+                <Link
+                  to={`/posts/new/?community=${community?.id}`}
+                  community={community}
+                >
                   Create Post
                 </Link>
               )}
@@ -71,7 +76,7 @@ const CommunityDetail = () => {
                   <OpenModalButton
                     buttonText="Delete Community"
                     modalComponent={
-                      <DeleteCommunityModal community={communityObj} />
+                      <DeleteCommunityModal community={communityObj[0]} />
                     }
                   />
                 </>

@@ -1,14 +1,24 @@
-const LOAD_ALL_POSTS = "posts/LOAD_ALL_POSTS";
-const LOAD_SINGLE_POST = "posts/LOAD_SINGLE_POST";
-const LOAD_CURRENT_USER_POSTS = "posts/LOAD_CURRENT_USER_POSTS";
+const GET_ALL_POSTS = "posts/GET_ALL_POSTS";
 const CREATE_POST = "posts/CREATE_POST";
+const GET_SINGLE_POST = "posts/GET_SINGLE_POST";
 const UPDATE_POST = "posts/UPDATE_POST";
-const DELETE_POST = "posts/DELETE_POST";
 const RETURN_INITIAL = "posts/RETURN_INITIAL";
+const DELETE_POST = "posts/DELETE_POST";
+const GET_CURRENT_USER_POSTS = "posts/GET_CURRENT_USER_POSTS";
+
+const getAllPosts = (posts) => ({
+  type: GET_ALL_POSTS,
+  posts,
+});
 
 const createPost = (post) => ({
   type: CREATE_POST,
   post: post,
+});
+
+const getSinglePost = (post) => ({
+  type: GET_SINGLE_POST,
+  post,
 });
 
 const updatePost = (post) => ({
@@ -16,19 +26,8 @@ const updatePost = (post) => ({
   post: post,
 });
 
-const loadAllPosts = (posts) => ({
-  type: LOAD_ALL_POSTS,
-  posts,
-});
-
-const loadCurrentUserPosts = (posts) => ({
-  type: LOAD_CURRENT_USER_POSTS,
-  posts,
-});
-
-const loadSinglePost = (post) => ({
-  type: LOAD_SINGLE_POST,
-  post,
+export const returnInitialPosts = () => ({
+  type: RETURN_INITIAL,
 });
 
 const deletePost = (postId) => ({
@@ -36,44 +35,17 @@ const deletePost = (postId) => ({
   postId,
 });
 
-export const returnInitialPosts = () => ({
-  type: RETURN_INITIAL,
+const getCurrentUserPosts = (posts) => ({
+  type: GET_CURRENT_USER_POSTS,
+  posts,
 });
 
 export const thunkGetAllPosts = () => async (dispatch) => {
   const res = await fetch("/api/posts/");
   if (res.ok) {
     const allPosts = await res.json();
-    dispatch(loadAllPosts(allPosts));
+    dispatch(getAllPosts(allPosts));
     return allPosts;
-  } else {
-    const errs = await res.json();
-    return errs;
-  }
-};
-
-export const thunkUpdatePost = (postId, updatedPost) => async (dispatch) => {
-  const res = await fetch(`/api/posts/${postId}/edit`, {
-    method: "PUT",
-    body: updatedPost,
-  });
-
-  if (res.ok) {
-    const updatedPostData = await res.json();
-    dispatch(updatePost(updatedPostData));
-    return updatedPostData;
-  } else {
-    const errs = await res.json();
-    return errs;
-  }
-};
-
-export const thunkGetSinglePost = (postId) => async (dispatch) => {
-  const res = await fetch(`/api/posts/${postId}`);
-  if (res.ok) {
-    const post = await res.json();
-    dispatch(loadSinglePost(post));
-    return post;
   } else {
     const errs = await res.json();
     return errs;
@@ -96,13 +68,41 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
   }
 };
 
+export const thunkGetSinglePost = (postId) => async (dispatch) => {
+  const res = await fetch(`/api/posts/${postId}`);
+  if (res.ok) {
+    const post = await res.json();
+    dispatch(getSinglePost(post));
+    return post;
+  } else {
+    const errs = await res.json();
+    return errs;
+  }
+};
+
+export const thunkUpdatePost = (postId, updatedPost) => async (dispatch) => {
+  const res = await fetch(`/api/posts/${postId}/edit`, {
+    method: "PUT",
+    body: updatedPost,
+  });
+
+  if (res.ok) {
+    const updatedPostData = await res.json();
+    dispatch(updatePost(updatedPostData));
+    return updatedPostData;
+  } else {
+    const errs = await res.json();
+    return errs;
+  }
+};
+
 export const thunkDeletePost = (postId) => async (dispatch) => {
   const res = await fetch(`/api/posts/${postId}/delete`, {
     method: "DELETE",
   });
 
   if (res.ok) {
-    dispatch(deletePost({ postId }));
+    dispatch(deletePost(postId));
   } else {
     const errs = await res.json();
     return errs;
@@ -113,7 +113,8 @@ export const thunkGetCurrentUserPosts = () => async (dispatch) => {
   const res = await fetch("/api/posts/current");
   if (res.ok) {
     const currentUserPosts = await res.json();
-    dispatch(loadCurrentUserPosts(currentUserPosts.posts));
+
+    dispatch(getCurrentUserPosts(currentUserPosts));
     return currentUserPosts;
   } else {
     const errs = await res.json();
@@ -125,12 +126,12 @@ const initialState = {};
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_ALL_POSTS: {
+    case GET_ALL_POSTS: {
       const newState = { ...state };
       action.posts.forEach((post) => (newState[post.id] = post));
       return newState;
     }
-    case LOAD_SINGLE_POST: {
+    case GET_SINGLE_POST: {
       const newState = {};
       newState[action.post.id] = { ...action.post };
       return newState;
@@ -145,8 +146,9 @@ const postReducer = (state = initialState, action) => {
       newState[action.post.id] = action.post;
       return newState;
     }
-    case LOAD_CURRENT_USER_POSTS: {
-      const newState = { ...action.posts };
+    case GET_CURRENT_USER_POSTS: {
+      const newState = {};
+      action.posts.forEach((post) => (newState[post.id] = post));
       return newState;
     }
     case DELETE_POST: {

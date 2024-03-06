@@ -9,6 +9,10 @@
   width: 320px;
 }
 
+.login-signup-container:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 /* h1 */
 .login-signup-container h1 {
   text-align: center;
@@ -77,9 +81,9 @@
 .demo-user {
   cursor: pointer;
   margin: auto;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .demo-user:hover {
-  color: #005738;
+  color: white;
 }
