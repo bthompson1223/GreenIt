@@ -45,6 +45,7 @@
   border: 1px solid black;
   border-radius: 10px;
   width: 650px;
+  overflow-wrap: break-word;
 }
 
 .details:hover {
@@ -57,10 +58,17 @@
   justify-content: center;
 }
 
+.post-details-title > p {
+  max-width: 650px;
+  padding-left: 3%;
+  padding-right: 1%;
+}
+
 .post-details-body-container {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  width: 650px;
 }
 
 .post-edit-delete {

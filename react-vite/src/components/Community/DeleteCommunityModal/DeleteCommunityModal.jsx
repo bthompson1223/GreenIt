@@ -8,11 +8,11 @@ const DeleteCommunityModal = ({ community }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const navigate = useNavigate();
+  console.log(community);
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    await dispatch(thunkDeleteCommunity(community[0].id));
-    dispatch(returnInitial());
+    await dispatch(thunkDeleteCommunity(community.id));
     closeModal();
     navigate("/");
   };

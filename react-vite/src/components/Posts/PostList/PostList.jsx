@@ -2,11 +2,31 @@ import { Link } from "react-router-dom";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeletePostModal from "../DeletePostModal/DeletePostModal";
 import "./PostList.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { thunkGetAllPosts } from "../../../redux/post";
 
-const PostList = ({ posts }) => {
+const PostList = ({ passedInPosts }) => {
   const user = useSelector((state) => state.session.user);
-  if (!posts) return null;
+  const postsObj = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  if (!passedInPosts) {
+    useEffect(() => {
+      dispatch(thunkGetAllPosts());
+    }, [dispatch]);
+  }
+
+  const posts = passedInPosts ? passedInPosts : Object.values(postsObj);
+
+  if (!posts.length) {
+    return (
+      <div className="post-list-container">
+        <h2>Posts</h2>
+        <h3>No Posts Yet!</h3>
+      </div>
+    );
+  }
 
   return (
     <div className="post-list-container">
@@ -21,7 +41,11 @@ const PostList = ({ posts }) => {
                   to={`/communities/${post.community.community_name}`}
                   className="post-community-link"
                 >
-                  vg/{post.community.community_name}
+                  vg/{post.community.community_name.slice(0, 25)}
+                  {post.community.community_name.length !==
+                    post.community.community_name.slice(0, 50).length && (
+                    <span>...</span>
+                  )}
                 </Link>{" "}
                 Posted by u/
                 {post.poster.username}
@@ -35,7 +59,12 @@ const PostList = ({ posts }) => {
                 }
               >
                 <div className="post-details-title">
-                  <h3>{post.title}</h3>
+                  <h3>
+                    {post.title.slice(0, 50)}
+                    {post.title.length !== post.title.slice(0, 50).length && (
+                      <span>...</span>
+                    )}
+                  </h3>
                 </div>
                 {post.image_url ? (
                   <img

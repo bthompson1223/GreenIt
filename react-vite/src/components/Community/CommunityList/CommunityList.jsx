@@ -32,7 +32,11 @@ const CommunityList = () => {
                 community={community}
                 className="community-link"
               >
-                vg/{community.community_name}
+                vg/{community.community_name.slice(0, 17)}
+                {community.community_name.length !==
+                  community.community_name.slice(0, 50).length && (
+                  <span>...</span>
+                )}
               </Link>
 
               {community.owner_id === user?.id ? (

@@ -127,9 +127,12 @@ const CreatePost = (props) => {
           </label>
         </div>
 
-        <button type="submit" className="create-post button">
-          Create Post
-        </button>
+        {!imageLoading && (
+          <button type="submit" className="create-post button">
+            Create Post
+          </button>
+        )}
+        {imageLoading && <p className="loading">Loading...</p>}
       </form>
     </div>
   );

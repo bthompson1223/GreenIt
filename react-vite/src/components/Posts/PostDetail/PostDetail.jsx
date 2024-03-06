@@ -32,7 +32,11 @@ const PostDetail = () => {
             to={`/communities/${post.community.community_name}`}
             className="community-link"
           >
-            vg/{post.community.community_name}
+            vg/{post.community.community_name.slice(0, 25)}
+            {post.community.community_name.length !==
+              post.community.community_name.slice(0, 50).length && (
+              <span>...</span>
+            )}
           </Link>
           <p>Posted by u/{post.poster.username}</p>
         </div>

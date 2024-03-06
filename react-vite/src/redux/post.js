@@ -102,7 +102,7 @@ export const thunkDeletePost = (postId) => async (dispatch) => {
   });
 
   if (res.ok) {
-    dispatch(deletePost({ postId }));
+    dispatch(deletePost(postId));
   } else {
     const errs = await res.json();
     return errs;

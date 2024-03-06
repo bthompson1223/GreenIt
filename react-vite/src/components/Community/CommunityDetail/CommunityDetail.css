@@ -25,7 +25,7 @@
   align-items: flex-start;
   justify-content: space-evenly;
   gap: 50px;
-  min-width: 100%;
+  width: 100%;
   flex: 1;
 }
 
@@ -48,6 +48,8 @@
   flex-direction: column;
   justify-content: space-around;
   height: 45rem;
+  width: 30rem;
+  word-break: break-all;
 }
 
 .community-details {
@@ -55,6 +57,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 3%;
 }
 
 .community-create-edit-delete {
@@ -89,6 +92,7 @@
   justify-content: center;
   border: 1px solid black;
   border-radius: 10px;
+  padding: 3%;
 }
 
 .community-rules-container:hover {

@@ -25,7 +25,7 @@ const CurrentPosts = () => {
   return (
     <div className="user-posts-container">
       <h2>{user.username}&apos;s Posts</h2>
-      <PostList posts={posts} />
+      <PostList passedInPosts={posts} />
     </div>
   );
 };

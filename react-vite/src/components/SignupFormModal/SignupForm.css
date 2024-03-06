@@ -81,9 +81,9 @@
 .demo-user {
   cursor: pointer;
   margin: auto;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .demo-user:hover {
-  color: #005738;
+  color: white;
 }
