@@ -1,15 +1,19 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useNavigate } from "react-router-dom";
+import "./ProfileButton.css";
 
 function ProfileButton() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
+  const hasProfileImg = user?.profile_img;
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
@@ -37,25 +41,48 @@ function ProfileButton() {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
+    navigate("/");
   };
+
+  const profileImage = hasProfileImg ? (
+    <img
+      src={user?.profile_img}
+      alt="Profile Image"
+      className="profile-image"
+    />
+  ) : (
+    <img
+      className="profile-image"
+      src="https://launch-pad-group-project.s3.us-west-1.amazonaws.com/48-512.png"
+      alt="Profile Image"
+    />
+  );
+
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
-      </button>
+      <div className="profile-button-container" onClick={toggleMenu}>
+        {profileImage}
+        <div className="info">
+          <p>{user ? `u/${user.username}` : "Log in/Sign up!"}</p>
+        </div>
+      </div>
+
       {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
+        <ul className={ulClassName} ref={ulRef}>
           {user ? (
             <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
+              <li className="text">{user.username}</li>
+              <li className="text-email">{user.email}</li>
               <li>
-                <button onClick={logout}>Log Out</button>
+                <button onClick={logout} className="logout-button">
+                  Log Out
+                </button>
               </li>
             </>
           ) : (
-            <>
+            <div className="login-logout">
               <OpenModalMenuItem
                 itemText="Log In"
                 onItemClick={closeMenu}
@@ -66,7 +93,7 @@ function ProfileButton() {
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
-            </>
+            </div>
           )}
         </ul>
       )}

@@ -28,33 +28,45 @@ function LoginFormModal() {
     }
   };
 
+  const demoUser = () => {
+    setEmail("guest_services@vghaven.io");
+    setPassword("password");
+  };
+
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="login-signup-container">
+      <h1 className="login-signup">Log In</h1>
+      <form className="login-signup-form" onSubmit={handleSubmit}>
         <label>
-          Email
+          <p>Email: </p>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Enter your registered email"
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="input-errors">{errors.email}</p>}
         <label>
-          Password
+          <p>Password: </p>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter your password"
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+        {errors.password && <p className="input-errors">{errors.password}</p>}
+        <button className="login-button" type="submit">
+          Log In
+        </button>
+        <div className="demo-user" onClick={demoUser}>
+          Demo User
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

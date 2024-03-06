@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkCreateCommunity } from "../../../redux/community";
+import "./CreateCommunity.css";
 
 const CreateCommunity = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const CreateCommunity = () => {
 
   return (
     <div className="community-create-edit">
-      <h1>Add a New Community!</h1>
+      <h1 className="community-add-edit">Add a New Community!</h1>
       <form
         className="create-community-form"
         onSubmit={handleSubmit}

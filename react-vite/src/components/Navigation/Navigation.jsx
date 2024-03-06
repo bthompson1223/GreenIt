@@ -4,12 +4,16 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
+    <ul className="nav-container">
+      <li className="logo-li">
+        <NavLink to="/" className="logo">
+          VGHaven
+        </NavLink>
       </li>
 
-      <li>
+      <li className="empty"></li>
+
+      <li className="button-container">
         <ProfileButton />
       </li>
     </ul>

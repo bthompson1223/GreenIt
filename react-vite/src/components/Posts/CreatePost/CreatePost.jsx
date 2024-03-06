@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkCreatePost } from "../../../redux/post";
 import { thunkGetCommunities } from "../../../redux/community";
+import "./CreatePost.css";
 
-const CreatePost = () => {
+const CreatePost = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const communitiesObj = useSelector((state) => state.communities);
@@ -31,8 +32,6 @@ const CreatePost = () => {
     </option>
   ));
 
-  console.log(communityId);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
@@ -47,7 +46,6 @@ const CreatePost = () => {
       setErrors(validationErrors);
     } else {
       const formData = new FormData();
-      console.log("image url", imageUrl);
 
       formData.append("title", postTitle);
       formData.append("body", postBody);
@@ -104,8 +102,7 @@ const CreatePost = () => {
         <div className="post-input-div">
           <h3>Post Body</h3>
           <label htmlFor="body">
-            <input
-              type="text"
+            <textarea
               name="body"
               value={postBody}
               onChange={(e) => setPostBody(e.target.value)}

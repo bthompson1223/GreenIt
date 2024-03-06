@@ -6,6 +6,8 @@ import {
   thunkUpdateCommunity,
 } from "../../../redux/community";
 
+import "./EditCommunity.css";
+
 const EditCommunity = () => {
   const communityObj = useSelector((state) => state.communities);
   const communityParam = useParams();
@@ -19,7 +21,6 @@ const EditCommunity = () => {
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 
-  //   console.log(communityParam);
   useEffect(() => {
     dispatch(thunkGetOneCommunity(communityParam.community));
   }, [dispatch, communityParam]);
@@ -33,15 +34,10 @@ const EditCommunity = () => {
   }, [setCommunityName, setDescription, setImageUrl, community]);
 
   if (!Object.values(communityObj)) return null;
-  //   console.log(communityObj);
+
   if (!user) return <h2>You must be logged in to edit a community!</h2>;
 
-  //   console.log(community);
-
-  //   console.log("IDS =>", user.id, communityObj);
-
   if (user.id != community?.owner_id) return <h2>Unauthorized</h2>;
-  //   console.log("community name =>", communityName);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,8 +62,6 @@ const EditCommunity = () => {
       formData.append("description", description);
       formData.append("image_url", imageUrl);
 
-      console.log("INSIDE HANDLE SUBMIT ========>", communityName);
-
       setImageLoading(true);
 
       await dispatch(thunkUpdateCommunity(formData, communityParam.community))
@@ -79,7 +73,7 @@ const EditCommunity = () => {
         });
     }
   };
-  console.log(community);
+
   return (
     <div className="community-create-edit">
       <h1>Add a New Community!</h1>

@@ -57,7 +57,6 @@ export const thunkUpdatePost = (postId, updatedPost) => async (dispatch) => {
     method: "PUT",
     body: updatedPost,
   });
-  console.log("Inside update post reducer", updatedPost);
 
   if (res.ok) {
     const updatedPostData = await res.json();
@@ -152,9 +151,9 @@ const postReducer = (state = initialState, action) => {
     }
     case DELETE_POST: {
       const newState = { ...state };
-      console.log("before delete =>", newState);
+
       delete newState[action.postId];
-      console.log("after delete =>", newState);
+
       return newState;
     }
     case RETURN_INITIAL: {

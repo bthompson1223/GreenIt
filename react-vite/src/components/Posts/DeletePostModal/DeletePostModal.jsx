@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { thunkDeletePost } from "../../../redux/post";
+import "./DeletePostModal.css";
 
 const DeletePostModal = ({ post }) => {
   const dispatch = useDispatch();
@@ -19,8 +20,6 @@ const DeletePostModal = ({ post }) => {
     e.preventDefault();
     closeModal();
   };
-
-  console.log("inside delete community modal", post);
 
   return (
     <div className="delete-post-modal post-modal">
