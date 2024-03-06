@@ -11,11 +11,9 @@ const PostList = ({ passedInPosts }) => {
   const postsObj = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
-  if (!passedInPosts) {
-    useEffect(() => {
-      dispatch(thunkGetAllPosts());
-    }, [dispatch]);
-  }
+  useEffect(() => {
+    if (!passedInPosts) dispatch(thunkGetAllPosts());
+  }, [dispatch]);
 
   const posts = passedInPosts ? passedInPosts : Object.values(postsObj);
 
