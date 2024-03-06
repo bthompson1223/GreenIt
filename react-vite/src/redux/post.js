@@ -113,7 +113,8 @@ export const thunkGetCurrentUserPosts = () => async (dispatch) => {
   const res = await fetch("/api/posts/current");
   if (res.ok) {
     const currentUserPosts = await res.json();
-    dispatch(loadCurrentUserPosts(currentUserPosts.posts));
+
+    dispatch(loadCurrentUserPosts(currentUserPosts));
     return currentUserPosts;
   } else {
     const errs = await res.json();
@@ -146,7 +147,8 @@ const postReducer = (state = initialState, action) => {
       return newState;
     }
     case LOAD_CURRENT_USER_POSTS: {
-      const newState = { ...action.posts };
+      const newState = {};
+      action.posts.forEach((post) => (newState[post.id] = post));
       return newState;
     }
     case DELETE_POST: {

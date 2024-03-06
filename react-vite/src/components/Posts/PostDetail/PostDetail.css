@@ -13,6 +13,11 @@
   border-radius: 10px;
   padding: 2%;
   gap: 5px;
+  width: 75%;
+}
+
+.single-post-details {
+  width: 75%;
 }
 
 .post-info {
@@ -30,6 +35,7 @@
 .details {
   border: 1px solid black;
   border-radius: 10px;
+  width: 75%;
 }
 
 .post-details-title {
