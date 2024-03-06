@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { thunkGetSinglePost, thunkUpdatePost } from "../../../redux/post";
 import { thunkGetCommunities } from "../../../redux/community";
+import "./EditPost.css";
 
 const EditPost = () => {
   const postObj = useSelector((state) => state.posts);
@@ -60,7 +61,6 @@ const EditPost = () => {
       setErrors(validationErrors);
     } else {
       const formData = new FormData();
-      console.log("Inside handleSubmit imageUrl", imageUrl);
 
       formData.append("title", postTitle);
       formData.append("body", postBody);
@@ -117,8 +117,7 @@ const EditPost = () => {
         <div className="post-input-div">
           <h3>Post Body</h3>
           <label htmlFor="body">
-            <input
-              type="text"
+            <textarea
               name="body"
               value={postBody}
               onChange={(e) => setPostBody(e.target.value)}
