@@ -6,6 +6,9 @@ import { thunkGetCommunities } from "../../../redux/community";
 import "./CreatePost.css";
 
 const CreatePost = (props) => {
+  const { community } = Object.fromEntries(
+    new URLSearchParams(location.search)
+  );
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const communitiesObj = useSelector((state) => state.communities);
@@ -13,7 +16,7 @@ const CreatePost = (props) => {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
-  const [communityId, setCommunityId] = useState(1);
+  const [communityId, setCommunityId] = useState(community || 1);
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
 

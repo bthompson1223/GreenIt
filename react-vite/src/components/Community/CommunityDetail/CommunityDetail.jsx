@@ -58,7 +58,10 @@ const CommunityDetail = () => {
             </div>
             <div className="community-create-edit-delete">
               {user && (
-                <Link to="/posts/new" community={community}>
+                <Link
+                  to={`/posts/new/?community=${community?.id}`}
+                  community={community}
+                >
                   Create Post
                 </Link>
               )}
