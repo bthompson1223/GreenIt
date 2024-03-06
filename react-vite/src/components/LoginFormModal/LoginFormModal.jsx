@@ -62,9 +62,9 @@ function LoginFormModal() {
         <button className="login-button" type="submit">
           Log In
         </button>
-        <div className="demo-user" onClick={demoUser}>
+        <button className="demo-user" onClick={demoUser}>
           Demo User
-        </div>
+        </button>
       </form>
     </div>
   );
