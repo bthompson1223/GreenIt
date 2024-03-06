@@ -21,9 +21,13 @@ const CurrentPosts = () => {
   if (!Object.values(postsObj).length) return <h1>No Posts Yet!</h1>;
 
   const posts = Object.values(postsObj);
-  console.log(posts);
 
-  return <PostList posts={posts} />;
+  return (
+    <div className="user-posts-container">
+      <h2>{user.username}&apos;s Posts</h2>
+      <PostList posts={posts} />
+    </div>
+  );
 };
 
 export default CurrentPosts;
