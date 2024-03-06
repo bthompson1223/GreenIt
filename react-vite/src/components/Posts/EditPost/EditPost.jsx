@@ -61,7 +61,6 @@ const EditPost = () => {
       setErrors(validationErrors);
     } else {
       const formData = new FormData();
-      console.log("Inside handleSubmit imageUrl", imageUrl);
 
       formData.append("title", postTitle);
       formData.append("body", postBody);

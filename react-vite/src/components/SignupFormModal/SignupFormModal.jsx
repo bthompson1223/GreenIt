@@ -17,8 +17,6 @@ function SignupFormModal() {
   const [imageLoading, setImageLoading] = useState(false);
   const { closeModal } = useModal();
 
-  console.log(email);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});

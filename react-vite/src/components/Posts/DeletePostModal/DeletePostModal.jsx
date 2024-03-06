@@ -21,8 +21,6 @@ const DeletePostModal = ({ post }) => {
     closeModal();
   };
 
-  console.log("inside delete community modal", post);
-
   return (
     <div className="delete-post-modal post-modal">
       <h2>Confirm Delete</h2>

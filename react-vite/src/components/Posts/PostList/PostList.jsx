@@ -3,7 +3,6 @@ import "./PostList.css";
 
 const PostList = ({ posts }) => {
   if (!posts) return null;
-  console.log("inside post list =>", posts);
 
   return (
     <div className="post-list-container">

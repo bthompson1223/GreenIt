@@ -25,15 +25,12 @@ const CreatePost = (props) => {
   if (!Object.values(communitiesObj).length) return null;
 
   const communities = Object.values(communitiesObj);
-  console.log("create post", props);
 
   const communityOptions = communities.map((community) => (
     <option value={community.id} key={community.id}>
       {community.community_name}
     </option>
   ));
-
-  // console.log(community);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +46,6 @@ const CreatePost = (props) => {
       setErrors(validationErrors);
     } else {
       const formData = new FormData();
-      console.log("image url", imageUrl);
 
       formData.append("title", postTitle);
       formData.append("body", postBody);

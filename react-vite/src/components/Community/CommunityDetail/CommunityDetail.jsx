@@ -34,9 +34,6 @@ const CommunityDetail = () => {
 
   const isOwner = user?.id === community.owner_id;
 
-  console.log(isOwner);
-
-  // console.log("posts", communityObj);
   const communityPosts = Object.values(postsObj).filter(
     (post) => post.community_id == communityObj[0]?.id
   );
