@@ -9,6 +9,10 @@
   width: 320px;
 }
 
+.login-signup-container:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 /* h1 */
 .login-signup-container h1 {
   text-align: center;

@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+.delete-community-modal:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 .delete-community-modal h2 {
   font-weight: 500;
   margin-top: 0;

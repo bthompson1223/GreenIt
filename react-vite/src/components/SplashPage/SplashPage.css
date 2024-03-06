@@ -26,6 +26,10 @@
   padding-right: 10%;
 }
 
+.splash-about:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 .dev-info {
   align-self: center;
   justify-self: center;
@@ -49,8 +53,12 @@
   text-decoration: none;
 }
 
-.dev-link,
-.dev-link:visited {
+.dev-link {
   color: darkgreen;
   text-decoration: none;
+}
+
+.dev-link:hover {
+  background-color: darkgreen;
+  color: white;
 }

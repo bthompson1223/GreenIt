@@ -16,6 +16,10 @@
   width: 75%;
 }
 
+.post-detail-container:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 .single-post-details {
   width: 75%;
 }
@@ -27,6 +31,11 @@
   justify-content: space-between;
 }
 
+.post-info > a:hover {
+  background-color: darkgreen;
+  color: white;
+}
+
 .post-detail-image {
   object-fit: contain;
   max-width: 650px;
@@ -35,7 +44,11 @@
 .details {
   border: 1px solid black;
   border-radius: 10px;
-  width: 75%;
+  width: 650px;
+}
+
+.details:hover {
+  box-shadow: 2px 3px 2px green;
 }
 
 .post-details-title {
@@ -46,7 +59,7 @@
 
 .post-details-body-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -74,4 +87,9 @@
 
 .post-edit-delete > button {
   font-size: 16px;
+}
+
+.line {
+  border: 1px solid black;
+  width: 650px;
 }

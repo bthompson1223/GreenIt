@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import OpenModalButton from "../../OpenModalButton/OpenModalButton";
+import DeletePostModal from "../DeletePostModal/DeletePostModal";
 import "./PostList.css";
+import { useSelector } from "react-redux";
 
 const PostList = ({ posts }) => {
+  const user = useSelector((state) => state.session.user);
   if (!posts) return null;
 
   return (
@@ -22,16 +26,25 @@ const PostList = ({ posts }) => {
                 Posted by u/
                 {post.poster.username}
               </div>
-              <Link to={`/posts/${post.id}`} className="post-details">
+              <Link
+                to={`/posts/${post.id}`}
+                className={
+                  post.owner_id === user?.id
+                    ? "post-details"
+                    : "post-details not-owner"
+                }
+              >
                 <div className="post-details-title">
                   <h3>{post.title}</h3>
                 </div>
-                {post.image_url && (
+                {post.image_url ? (
                   <img
                     src={post.image_url}
                     alt="Post image"
                     className="post-image"
                   />
+                ) : (
+                  <div className="post-image line"></div>
                 )}
                 <div className="post-details-body">
                   <p>
@@ -42,6 +55,26 @@ const PostList = ({ posts }) => {
                   </p>
                 </div>
               </Link>
+              {post.owner_id === user?.id ? (
+                <div className="post-edit-delete post-list-edit-delete">
+                  <Link
+                    to={`/posts/${post.id}/edit`}
+                    className="small-edit-delete"
+                  >
+                    Edit
+                  </Link>
+                  <OpenModalButton
+                    className="small-edit-delete"
+                    buttonText="Delete"
+                    modalComponent={<DeletePostModal post={post} />}
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className="empty-container"></div>
+                  <div className="empty-container"></div>
+                </>
+              )}
             </div>
           </li>
         ))}

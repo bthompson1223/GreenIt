@@ -41,12 +41,14 @@ const PostDetail = () => {
             <p>{post.title}</p>
           </div>
           <div className="post-image-container">
-            {post.image_url && (
+            {post.image_url ? (
               <img
                 src={post.image_url}
                 alt="post-image"
                 className="post-detail-image"
               />
+            ) : (
+              <div className="post-detail-image line"></div>
             )}
           </div>
           <div className="post-details-body-container">

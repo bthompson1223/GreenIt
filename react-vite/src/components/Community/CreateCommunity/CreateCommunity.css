@@ -7,6 +7,10 @@
   border-radius: 10px;
 }
 
+.community-create-edit:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
 /* h1 */
 .community-create-edit h1 {
   text-align: center;
