@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeletePostModal from "../DeletePostModal/DeletePostModal";
 import "./PostList.css";
@@ -10,6 +10,7 @@ const PostList = ({ passedInPosts }) => {
   const user = useSelector((state) => state.session.user);
   const postsObj = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const { community_name } = useParams();
 
   useEffect(() => {
     if (!passedInPosts) {
@@ -29,85 +30,93 @@ const PostList = ({ passedInPosts }) => {
     );
   }
 
+  const onCurrUser = (obj) => obj.owner_id === user?.id;
+
   return (
     <div className="post-list-container">
-      <h2>Posts</h2>
+      {!community_name && posts.every(onCurrUser) ? (
+        <h2>{user?.username}&apos;s Posts</h2>
+      ) : (
+        <h2>Posts</h2>
+      )}
       <ul className="post-list">
         {!posts.length && <h3>No posts yet!</h3>}
-        {posts.map((post) => (
-          <li key={post.id}>
-            <div className="post-container">
-              <div className="post-community-details">
-                <Link
-                  to={`/communities/${post.community.community_name}`}
-                  className="post-community-link"
-                >
-                  vg/{post.community.community_name.slice(0, 25)}
-                  {post.community.community_name.length !==
-                    post.community.community_name.slice(0, 50).length && (
-                    <span>...</span>
-                  )}
-                </Link>{" "}
-                Posted by u/
-                {post.poster.username}
-              </div>
-              <Link
-                to={`/posts/${post.id}`}
-                className={
-                  post.owner_id === user?.id
-                    ? "post-details"
-                    : "post-details not-owner"
-                }
-              >
-                <div className="post-details-title">
-                  <h3>
-                    {post.title.slice(0, 50)}
-                    {post.title.length !== post.title.slice(0, 50).length && (
-                      <span>...</span>
-                    )}
-                  </h3>
-                </div>
-                {post.image_url ? (
-                  <img
-                    src={post.image_url}
-                    alt="Post image"
-                    className="post-image"
-                  />
-                ) : (
-                  <div className="post-image line"></div>
-                )}
-                <div className="post-details-body">
-                  <p>
-                    {post.body.slice(0, 50)}
-                    {post.body.length !== post.body.slice(0, 50).length && (
-                      <span>...</span>
-                    )}
-                  </p>
-                </div>
-              </Link>
-              {post.owner_id === user?.id ? (
-                <div className="post-edit-delete post-list-edit-delete">
+        {posts
+          .map((post) => (
+            <li key={post.id}>
+              <div className="post-container">
+                <div className="post-community-details">
                   <Link
-                    to={`/posts/${post.id}/edit`}
-                    className="small-edit-delete"
+                    to={`/communities/${post.community.community_name}`}
+                    className="post-community-link"
                   >
-                    Edit
-                  </Link>
-                  <OpenModalButton
-                    className="small-edit-delete"
-                    buttonText="Delete"
-                    modalComponent={<DeletePostModal post={post} />}
-                  />
+                    vg/{post.community.community_name.slice(0, 25)}
+                    {post.community.community_name.length !==
+                      post.community.community_name.slice(0, 50).length && (
+                      <span>...</span>
+                    )}
+                  </Link>{" "}
+                  Posted by u/
+                  {post.poster.username}
                 </div>
-              ) : (
-                <>
-                  <div className="empty-container"></div>
-                  <div className="empty-container"></div>
-                </>
-              )}
-            </div>
-          </li>
-        ))}
+                <Link
+                  to={`/posts/${post.id}`}
+                  className={
+                    post.owner_id === user?.id
+                      ? "post-details"
+                      : "post-details not-owner"
+                  }
+                >
+                  <div className="post-details-title">
+                    <h3>
+                      {post.title.slice(0, 50)}
+                      {post.title.length !== post.title.slice(0, 50).length && (
+                        <span>...</span>
+                      )}
+                    </h3>
+                  </div>
+                  {post.image_url ? (
+                    <img
+                      src={post.image_url}
+                      alt="Post image"
+                      className="post-image"
+                    />
+                  ) : (
+                    <div className="post-image line"></div>
+                  )}
+                  <div className="post-details-body">
+                    <p>
+                      {post.body.slice(0, 50)}
+                      {post.body.length !== post.body.slice(0, 50).length && (
+                        <span>...</span>
+                      )}
+                    </p>
+                  </div>
+                </Link>
+                {post.owner_id === user?.id ? (
+                  <div className="post-edit-delete post-list-edit-delete">
+                    <Link
+                      to={`/posts/${post.id}/edit`}
+                      className="small-edit-delete"
+                    >
+                      Edit
+                    </Link>
+                    <OpenModalButton
+                      className="small-edit-delete"
+                      buttonText="Delete"
+                      modalComponent={<DeletePostModal post={post} />}
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <div className="empty-container"></div>
+                    <div className="empty-container"></div>
+                  </>
+                )}
+              </div>
+            </li>
+          ))
+          .reverse()}
       </ul>
     </div>
   );

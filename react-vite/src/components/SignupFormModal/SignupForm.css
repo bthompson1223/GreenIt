@@ -87,3 +87,7 @@
 .demo-user:hover {
   color: white;
 }
+
+.required-form {
+  color: red;
+}
