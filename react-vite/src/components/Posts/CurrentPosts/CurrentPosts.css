@@ -1,0 +1,10 @@
+.user-post-root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-posts-container {
+  max-width: 75%;
+  align-self: center;
+}
