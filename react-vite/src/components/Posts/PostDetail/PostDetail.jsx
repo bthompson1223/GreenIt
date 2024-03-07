@@ -5,6 +5,7 @@ import { returnInitialPosts, thunkGetSinglePost } from "../../../redux/post";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeletePostModal from "../DeletePostModal/DeletePostModal";
 import "./PostDetail.css";
+import { Comments } from "./CommentSection";
 
 const PostDetail = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ const PostDetail = () => {
           </div>
         )}
       </div>
+      <Comments post={post} />
     </div>
   );
 };

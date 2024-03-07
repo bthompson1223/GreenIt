@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from ..models import Community, User, db, Post
+from ..models import Community, User, db, Post, Comment
 from .aws_helpers import upload_file_to_s3, remove_file_from_s3, get_unique_filename
 from ..forms import PostForm
 
@@ -129,3 +129,81 @@ def delete_post(postId):
     db.session.commit()
 
     return {'message': "Successfully deleted post"}
+
+
+def build_nested_comments(comments_dict, parent_id=None):
+    nested_comments = []
+    for comment_id, comment in comments_dict.items():
+       
+        if comment['parent'] == parent_id:
+            # Recursive call to find replies to this comment
+            comment['replies'] = build_nested_comments(comments_dict, comment_id)
+            nested_comments.append(comment)
+    return nested_comments
+
+@post_routes.route('/<int:postId>/comments')
+def get_comments(postId):
+    comments = Comment.query.filter(Comment.post_id == postId).all()
+    comments_dict = {comment.id: comment.to_dict() for comment in comments}
+
+    nested_comments = build_nested_comments(comments_dict)
+    
+
+    return nested_comments
+   
+
+@login_required
+@post_routes.route('/<int:postId>/comments', methods=["POST"])
+def create_comment(postId):
+
+    data = request.json
+
+    if 'comment' in data: 
+        comment = data['comment'] 
+    else: 
+        comment =  data['reply']
+
+    if 'parentId' in data:
+        parent = data['parentId']
+    else:
+        parent = None
+
+    new_comment = Comment(
+        comment = comment,
+        post_id = postId,
+        owner_id = current_user.id,
+        parent = parent
+    )
+    try:
+        db.session.add(new_comment)
+        db.session.commit()
+    except:
+        return {"errors": {
+            "message": "Comment required"
+        }}
+
+    return new_comment.to_dict()
+  
+
+def delete_nested_comments(comment):
+    replies = Comment.query.filter_by(parent=comment.id).all()
+    for reply in replies:
+        delete_nested_comments(reply)
+    
+    db.session.delete(comment)
+    db.session.commit()
+
+@login_required
+@post_routes.route('/<int:postId>/comments/<int:commentId>/delete', methods=["DELETE"])
+def delete_comment(postId, commentId):
+    comment = Comment.query.get(commentId)
+
+    if not comment:
+        return {'errors': {'message': "Comment not found"}}, 404
+    
+    if current_user.id is not comment.owner_id:
+        return {'errors': {'message': "Unauthorized"}}, 401
+    
+    delete_nested_comments(comment)
+
+    return {"message": f"Successfully deleted comment"}

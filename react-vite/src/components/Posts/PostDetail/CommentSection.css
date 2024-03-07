@@ -1,0 +1,69 @@
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  width: 79%;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.comment-section:hover {
+  box-shadow: 2px 3px 2px lightgreen;
+}
+
+#new-comment-button {
+  color: white;
+  background-color: darkgreen;
+  border: none;
+  width: 100%;
+  max-width: 170px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.new-comment-div {
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.new-comment-div > div {
+  justify-self: center;
+  align-self: center;
+  width: 75%;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.new-comment-div textarea {
+  height: 4rem;
+  width: 75%;
+  border-radius: 10px;
+  resize: none;
+}
+
+.new-comment-div button {
+  color: white;
+  background-color: darkgreen;
+  border: none;
+  cursor: pointer;
+  max-width: 100px;
+  padding: 0.5rem;
+}
+
+.new-comment-div > button:first-child {
+  border-radius: 10px 0px 0px 0px;
+}
+
+.comments-submit-cancel {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  /* margin-bottom: 1rem; */
+}
