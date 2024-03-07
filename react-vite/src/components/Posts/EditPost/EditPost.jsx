@@ -52,9 +52,9 @@ const EditPost = () => {
     setErrors({});
     const validationErrors = {};
 
-    if (!postTitle.length || postTitle.length > 255)
+    if (!postTitle.length || postTitle.length > 50)
       validationErrors.postTitle =
-        "Post title must be between 1 and 255 characters";
+        "Post title must be between 1 and 50 characters";
     if (!postBody.length) validationErrors.postBody = "Body is required";
 
     if (Object.values(validationErrors).length) {
