@@ -1,6 +1,6 @@
 users = [
       {
-        "username":'Demo',
+        "username":'demo-lition',
         "first_name": "Demo",
         "last_name": "Lition",
         "profile_img": "https://vghaven-bucket.s3.us-east-2.amazonaws.com/1_DemoUser.png",
@@ -8,7 +8,7 @@ users = [
         "password":'password'
       },
       {
-        "username":'olirodri',
+        "username":'olyvoyl',
         "first_name": "Olivia",
         "last_name": "Rodriguez",
         "profile_img": "https://vghaven-bucket.s3.us-east-2.amazonaws.com/2_Olivia%2BRodriguez.png",
@@ -24,7 +24,7 @@ users = [
         "password":'password'
       },
       {
-        "username":'rajpat',
+        "username":'kurlyfries',
         "first_name": "Rajesh",
         "last_name": "Patel",
         "profile_img": "https://vghaven-bucket.s3.us-east-2.amazonaws.com/4_rajesh%2Bpatel.png",
@@ -40,7 +40,7 @@ users = [
         "password":'password'
       },
       {
-        "username":'chrismartiz',
+        "username":'chris-cross',
         "first_name": "Chris",
         "last_name": "Martinez",
         "profile_img": "https://vghaven-bucket.s3.us-east-2.amazonaws.com/6_Chris%2BMartinez.png",
@@ -48,7 +48,7 @@ users = [
         "password":'password'
       },
       {
-        "username":'Issacwm',
+        "username":'eureka',
         "first_name": "Issac",
         "last_name": "WM",
         "profile_img": "https://vghaven-bucket.s3.us-east-2.amazonaws.com/7_Issac%2BWM.png",
