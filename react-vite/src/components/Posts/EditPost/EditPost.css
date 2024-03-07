@@ -32,6 +32,7 @@
 .post-create-edit label {
   display: block;
   margin-bottom: 5px;
+  white-space: pre-wrap;
 }
 
 .post-create-edit select,

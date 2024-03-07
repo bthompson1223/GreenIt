@@ -49,9 +49,13 @@ const EditCommunity = () => {
     if (!description) validationErrors.description = "Description is required";
     if (!imageUrl) validationErrors.imageUrl = "Image is required";
 
-    if (communityName.length > 255)
+    if (communityName.length > 60)
       validationErrors.communityName =
-        "Community name must be less than 255 characters";
+        "Community name must be less than 60 characters";
+
+    if (description.length > 500)
+      validationErrors.description =
+        "Description must be less than 500 characters";
 
     if (Object.values(validationErrors).length) {
       setErrors(validationErrors);
