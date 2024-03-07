@@ -12,6 +12,7 @@ const CurrentPosts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(returnInitialPosts());
     dispatch(thunkGetCurrentUserPosts());
 
     return () => dispatch(returnInitialPosts());
