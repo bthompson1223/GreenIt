@@ -37,6 +37,8 @@ const CommentListItem = ({ comment }) => {
 
     const validationErrors = {};
     if (!reply) validationErrors.reply = "Reply must not be empty";
+    if (reply.length > 500)
+      validationErrors.reply = "Reply must be less than 500 characters";
 
     if (Object.values(validationErrors).length) {
       setErrors(validationErrors);

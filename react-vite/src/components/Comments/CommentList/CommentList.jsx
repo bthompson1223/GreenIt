@@ -13,7 +13,7 @@ const CommentList = () => {
     dispatch(thunkGetComments(postId));
 
     return () => dispatch(clearComments());
-  }, [dispatch, postId]);
+  }, [dispatch]);
 
   const comments = Object.values(commentsObj);
   if (!comments.length) return <h3>There are no comments yet</h3>;
