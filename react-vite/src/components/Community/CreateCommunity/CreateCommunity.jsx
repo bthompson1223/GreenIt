@@ -64,7 +64,10 @@ const CreateCommunity = () => {
         encType="multipart/form-data"
       >
         <div className="community-input-div">
-          <h3>What would you like your community called?</h3>
+          <h3>
+            <span className="required-form">* </span>What would you like your
+            community called?
+          </h3>
           <label htmlFor="name">
             <input
               type="text"
@@ -80,7 +83,10 @@ const CreateCommunity = () => {
           {errors.communityName && <p>{errors.communityName}</p>}
         </div>
         <div className="community-input-div">
-          <h3>Give us a great description of your community!</h3>
+          <h3>
+            <span className="required-form">* </span>Give us a great description
+            of your community!
+          </h3>
           <label htmlFor="description">
             <textarea
               name="description"
@@ -95,7 +101,9 @@ const CreateCommunity = () => {
           {errors.description && <p>{errors.description}</p>}
         </div>
         <div className="community-input-div">
-          <h3>Select a Community Image!</h3>
+          <h3>
+            <span className="required-form">* </span>Select a Community Image!
+          </h3>
           <label htmlFor="imageUrl">
             <input
               name="imageUrl"

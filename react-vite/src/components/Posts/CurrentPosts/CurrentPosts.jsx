@@ -6,6 +6,7 @@ import {
 } from "../../../redux/post";
 import PostList from "../PostList/PostList";
 import "./CurrentPosts.css";
+import { Link } from "react-router-dom";
 
 const CurrentPosts = () => {
   const user = useSelector((state) => state.session.user);
@@ -29,8 +30,44 @@ const CurrentPosts = () => {
   return (
     <div className="user-post-root">
       <div className="user-posts-container">
-        <h2>{user.username}&apos;s Posts</h2>
         <PostList passedInPosts={posts} />
+      </div>
+      <div className="details-container">
+        <div className="splash-about">
+          <h2>Things to Try</h2>
+          <p>If you're done managing your posts, try this!</p>
+          <p>
+            Create a post in one of our communities, or make a brand new one!
+          </p>
+          {user && (
+            <div className="create-links">
+              <Link to="/posts/new" className="splash-create-link">
+                Create Post
+              </Link>{" "}
+              <Link to="/communities/new" className="splash-create-link">
+                Create Community
+              </Link>
+            </div>
+          )}
+        </div>
+        <div className="splash-about">
+          <h2>Dev Members</h2>
+          <div className="dev-info">
+            <p>
+              Bryan Thompson:{" "}
+              <Link to="https://github.com/bthompson1223" className="dev-link">
+                Github
+              </Link>{" "}
+              |{" "}
+              <Link
+                to="https://www.linkedin.com/in/bryan-thompson-933a47251/"
+                className="dev-link"
+              >
+                LinkedIn
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

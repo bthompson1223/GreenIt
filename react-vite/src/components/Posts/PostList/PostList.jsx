@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import OpenModalButton from "../../OpenModalButton/OpenModalButton";
 import DeletePostModal from "../DeletePostModal/DeletePostModal";
 import "./PostList.css";
@@ -10,6 +10,7 @@ const PostList = ({ passedInPosts }) => {
   const user = useSelector((state) => state.session.user);
   const postsObj = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const { community_name } = useParams();
 
   useEffect(() => {
     if (!passedInPosts) {
@@ -29,9 +30,15 @@ const PostList = ({ passedInPosts }) => {
     );
   }
 
+  const onCurrUser = (obj) => obj.owner_id === user?.id;
+
   return (
     <div className="post-list-container">
-      <h2>Posts</h2>
+      {!community_name && posts.every(onCurrUser) ? (
+        <h2>{user?.username}&apos;s Posts</h2>
+      ) : (
+        <h2>Posts</h2>
+      )}
       <ul className="post-list">
         {!posts.length && <h3>No posts yet!</h3>}
         {posts.map((post) => (

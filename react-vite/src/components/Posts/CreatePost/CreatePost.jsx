@@ -79,7 +79,10 @@ const CreatePost = (props) => {
         encType="multipart/form-data"
       >
         <div className="post-input-div">
-          <h3>What community does this belong in?</h3>
+          <h3>
+            <span className="required-form">* </span>What community does this
+            belong in?
+          </h3>
           <select
             name="community"
             value={communityId}
@@ -90,7 +93,10 @@ const CreatePost = (props) => {
           </select>
         </div>
         <div className="post-input-div">
-          <h3>What&apos;s the title of your post?</h3>
+          <h3>
+            <span className="required-form">* </span>What&apos;s the title of
+            your post?
+          </h3>
           <label htmlFor="title">
             <input
               type="text"
@@ -106,7 +112,9 @@ const CreatePost = (props) => {
           {errors.postTitle && <p>{errors.postTitle}</p>}
         </div>
         <div className="post-input-div">
-          <h3>Post Body</h3>
+          <h3>
+            <span className="required-form">* </span>Post Body
+          </h3>
           <label htmlFor="body">
             <textarea
               name="body"
