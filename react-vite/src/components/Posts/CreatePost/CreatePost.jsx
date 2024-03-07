@@ -40,9 +40,9 @@ const CreatePost = (props) => {
     setErrors({});
     const validationErrors = {};
 
-    if (!postTitle.length || postTitle.length > 80)
+    if (!postTitle.length || postTitle.length > 50)
       validationErrors.postTitle =
-        "Post title must be between 1 and 80 characters";
+        "Post title must be between 1 and 50 characters";
     if (!postBody.length) validationErrors.postBody = "Body is required";
 
     if (postBody.length > 5000)
