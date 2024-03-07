@@ -43,6 +43,11 @@ const CreateCommunity = () => {
       }
     });
 
+    const re = /^[a-zA-Z0-9_]+$/;
+    re.test(communityName)
+      ? null
+      : (validationErrors.communityName = "Name can't have special characters");
+
     if (Object.values(validationErrors).length) {
       setErrors(validationErrors);
     } else {
