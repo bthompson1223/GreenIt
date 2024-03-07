@@ -4,7 +4,7 @@ import DeletePostModal from "../DeletePostModal/DeletePostModal";
 import "./PostList.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { thunkGetAllPosts } from "../../../redux/post";
+import { returnInitialPosts, thunkGetAllPosts } from "../../../redux/post";
 
 const PostList = ({ passedInPosts }) => {
   const user = useSelector((state) => state.session.user);
@@ -12,7 +12,10 @@ const PostList = ({ passedInPosts }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!passedInPosts) dispatch(thunkGetAllPosts());
+    if (!passedInPosts) {
+      dispatch(thunkGetAllPosts());
+    }
+    // return dispatch(returnInitialPosts());
   }, [dispatch]);
 
   const posts = passedInPosts ? passedInPosts : Object.values(postsObj);
