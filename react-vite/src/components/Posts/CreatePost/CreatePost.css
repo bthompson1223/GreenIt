@@ -57,6 +57,7 @@
 .post-create-edit textarea {
   height: 120px;
   resize: vertical;
+  white-space: pre-wrap;
 }
 
 .post-create-edit .post-errors p {

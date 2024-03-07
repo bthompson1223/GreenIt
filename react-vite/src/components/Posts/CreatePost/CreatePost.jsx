@@ -40,10 +40,13 @@ const CreatePost = (props) => {
     setErrors({});
     const validationErrors = {};
 
-    if (!postTitle.length || postTitle.length > 255)
+    if (!postTitle.length || postTitle.length > 80)
       validationErrors.postTitle =
-        "Post title must be between 1 and 255 characters";
+        "Post title must be between 1 and 80 characters";
     if (!postBody.length) validationErrors.postBody = "Body is required";
+
+    if (postBody.length > 5000)
+      validationErrors.postBody = "Body must be less than 5000 characters";
 
     if (Object.values(validationErrors).length) {
       setErrors(validationErrors);

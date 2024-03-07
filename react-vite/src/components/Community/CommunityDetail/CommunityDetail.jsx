@@ -43,7 +43,11 @@ const CommunityDetail = () => {
     <div className="community-details-container">
       <div className="community-name-image">
         <img src={community.image_url} alt="Community Image" />
-        <h2 className="community-detail-title">vg/{communityName.community}</h2>
+        <h2 className="community-detail-title">
+          vg/{community.community_name.slice(0, 60)}
+          {community.community_name.length !==
+            community.community_name.slice(0, 60) && <span>...</span>}
+        </h2>
       </div>
       <div className="community-post-details-rules">
         <div className="community-post-list">
@@ -53,8 +57,12 @@ const CommunityDetail = () => {
         <div className="detail-rules">
           <div className="community-detail-container">
             <div className="community-details">
-              <h2>vg/{community.community_name}</h2>
-              <p>{community.description}</p>
+              <h2>
+                vg/{community.community_name.slice(0, 30)}
+                {community.community_name.length !==
+                  community.community_name.slice(0, 30) && <span>...</span>}
+              </h2>
+              <p>{community.description.slice(0, 500)}</p>
             </div>
             <div className="community-create-edit-delete">
               {user && (
@@ -85,7 +93,7 @@ const CommunityDetail = () => {
           </div>
           <div className="community-rules-container">
             <h1 className="rules-title">
-              vg/{community.community_name} Rules!
+              vg/{community.community_name.slice(0, 60)} Rules!
             </h1>
             <ol>
               <li>Be respectful</li>

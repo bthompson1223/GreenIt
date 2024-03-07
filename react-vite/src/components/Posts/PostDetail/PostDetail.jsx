@@ -34,7 +34,7 @@ const PostDetail = () => {
           >
             vg/{post.community.community_name.slice(0, 25)}
             {post.community.community_name.length !==
-              post.community.community_name.slice(0, 50).length && (
+              post.community.community_name.slice(0, 25).length && (
               <span>...</span>
             )}
           </Link>

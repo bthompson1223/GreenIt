@@ -9,11 +9,12 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const serverResponse = await dispatch(
       thunkLogin({
         email,
@@ -23,8 +24,10 @@ function LoginFormModal() {
 
     if (serverResponse) {
       setErrors(serverResponse);
+      setIsLoading(false);
     } else {
       closeModal();
+      setIsLoading(false);
     }
   };
 
@@ -59,12 +62,17 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p className="input-errors">{errors.password}</p>}
-        <button className="login-button" type="submit">
-          Log In
-        </button>
-        <button className="demo-user" onClick={demoUser}>
-          Demo User
-        </button>
+        {!isLoading && (
+          <>
+            <button className="login-button" type="submit">
+              Log In
+            </button>
+            <button className="demo-user" onClick={demoUser}>
+              Demo User
+            </button>
+          </>
+        )}{" "}
+        {isLoading && <p className="loading">Loading...</p>}
       </form>
     </div>
   );
