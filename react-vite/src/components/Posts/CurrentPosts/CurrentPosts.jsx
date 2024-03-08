@@ -32,7 +32,7 @@ const CurrentPosts = () => {
       <div className="user-posts-container">
         <PostList passedInPosts={posts} />
       </div>
-      <div className="details-container">
+      <div className="current-posts-details-container">
         <div className="splash-about">
           <h2>Things to Try</h2>
           <p>If you're done managing your posts, try this!</p>

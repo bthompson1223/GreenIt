@@ -74,7 +74,7 @@ const CurrentCommunities = () => {
           ))}
         </ul>
       </div>
-      <div className="details-container">
+      <div className="current-community-details-container">
         <div className="splash-about">
           <h2>Things to Try</h2>
           <p>If you're done managing your communities, try this!</p>
