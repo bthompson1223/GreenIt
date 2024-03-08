@@ -49,7 +49,7 @@
   justify-content: space-around;
   height: 45rem;
   width: 30rem;
-  word-break: break-all;
+  /* word-break: break-all; */
 }
 
 .community-details {
@@ -58,6 +58,11 @@
   align-items: center;
   justify-content: center;
   padding: 3%;
+  overflow-wrap: break-word;
+}
+
+.community-details > p {
+  overflow-wrap: break-word;
 }
 
 .community-create-edit-delete {

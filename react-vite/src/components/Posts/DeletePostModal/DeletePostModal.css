@@ -35,20 +35,20 @@
 
 /* Yes button */
 .delete-post-modal button:first-of-type {
-  background-color: darkgreen;
+  background-color: green;
   color: white;
 }
 
 .delete-post-modal button:first-of-type:hover {
-  background-color: #068859;
+  background-color: darkgreen;
 }
 
 /* No button */
 .delete-post-modal button:last-of-type {
-  background-color: #ed7a07;
+  background-color: red;
   color: white;
 }
 
 .delete-post-modal button:last-of-type:hover {
-  background-color: #af3816;
+  background-color: darkred;
 }

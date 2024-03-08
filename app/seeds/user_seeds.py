@@ -24,7 +24,7 @@ users = [
         "password":'password'
       },
       {
-        "username":'kurlyfries',
+        "username":'kurly-cue',
         "first_name": "Rajesh",
         "last_name": "Patel",
         "profile_img": "https://vghaven-bucket.s3.us-east-2.amazonaws.com/4_rajesh%2Bpatel.png",

@@ -20,3 +20,10 @@
 .current-community-container:hover {
   box-shadow: 2px 3px 2px lightgreen;
 }
+
+.current-community-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
