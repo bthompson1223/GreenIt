@@ -1,5 +1,5 @@
 #commenter-profile-image {
-  width: 4rem;
+  width: 3rem;
   border-radius: 50%;
 }
 
@@ -7,7 +7,8 @@
   margin-left: 20px;
   border-left: 2px solid #eee;
   padding-left: 10px;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .comment-replies textarea {
@@ -25,6 +26,7 @@
   display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
+  padding-left: 2%;
 }
 
 .commenter-div {

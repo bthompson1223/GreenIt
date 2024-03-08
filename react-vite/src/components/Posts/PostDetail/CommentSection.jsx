@@ -21,6 +21,9 @@ export const Comments = () => {
     const validationErrors = {};
     if (!comment) validationErrors.comment = "Comment must not be empty";
 
+    if (!comment.length > 500)
+      validationErrors.comment = "Comment must be less than 500 characters";
+
     if (Object.values(validationErrors).length) {
       setErrors(validationErrors);
     } else {
