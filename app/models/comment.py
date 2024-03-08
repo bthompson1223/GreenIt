@@ -12,6 +12,7 @@ class Comment(db.Model):
     owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     post_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('posts.id')), nullable=False)
     comment = db.Column(db.Text, nullable=False)
+    parent = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
@@ -23,9 +24,12 @@ class Comment(db.Model):
 
         return {
             'id': self.id,
+            'comment': self.comment,
+            'user_image': self.commenter.profile_img,
+            'username': self.commenter.username,
             'owner_id': self.owner_id,
             'post_id': self.post_id,
-            'comment': self.comment,
+            'parent': self.parent,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

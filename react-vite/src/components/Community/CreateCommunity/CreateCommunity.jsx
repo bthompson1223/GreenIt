@@ -34,6 +34,20 @@ const CreateCommunity = () => {
       validationErrors.description =
         "Description must be less than 500 characters";
 
+    description.split(" ").forEach((word) => {
+      if (word.length > 50) {
+        validationErrors.description = `Each word must be 50 characters or less, please change ${word.slice(
+          0,
+          65
+        )}...`;
+      }
+    });
+
+    const re = /^[a-zA-Z0-9_]+$/;
+    re.test(communityName)
+      ? null
+      : (validationErrors.communityName = "Name can't have special characters");
+
     if (Object.values(validationErrors).length) {
       setErrors(validationErrors);
     } else {
