@@ -21,7 +21,7 @@ const CurrentPosts = () => {
   }, [dispatch]);
 
   if (!user) return <h1>You must be logged in to see your current posts!</h1>;
-  if (!Object.values(postsObj).length) return <h1>No Posts Yet!</h1>;
+  // if (!Object.values(postsObj).length) return <h1>No Posts Yet!</h1>;
 
   const posts = Object.values(postsObj).filter(
     (post) => post.owner_id === user.id

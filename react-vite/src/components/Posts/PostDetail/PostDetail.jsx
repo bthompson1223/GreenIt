@@ -62,7 +62,9 @@ const PostDetail = () => {
         </div>
         {isOwner && (
           <div className="post-edit-delete">
-            <Link to={`/posts/${postId}/edit`}>Edit Post</Link>
+            <Link to={`/posts/${postId}/edit/?${post?.community_id}`}>
+              Edit Post
+            </Link>
             <OpenModalButton
               buttonText="Delete Post"
               modalComponent={<DeletePostModal post={post} />}
