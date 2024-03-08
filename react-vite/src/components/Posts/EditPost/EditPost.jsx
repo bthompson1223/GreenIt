@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { thunkGetSinglePost, thunkUpdatePost } from "../../../redux/post";
@@ -12,7 +12,7 @@ const EditPost = () => {
   const user = useSelector((state) => state.session.user);
   const communitiesObj = useSelector((state) => state.communities);
   const navigate = useNavigate();
-  const post = Object.values(postObj)[0];
+
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -25,15 +25,8 @@ const EditPost = () => {
     dispatch(thunkGetCommunities());
   }, [dispatch]);
 
-  if (!Object.values(postObj).length) return null;
   if (!Object.values(communitiesObj).length) return null;
-
-  if (!postTitle.length && !postBody.length) {
-    setPostTitle(post.title);
-    setPostBody(post.body);
-    setImageUrl(post.image_url);
-    setCommunityId(post.community_id);
-  }
+  if (!Object.values(postObj).length) return null;
 
   const communities = Object.values(communitiesObj);
 
@@ -45,7 +38,18 @@ const EditPost = () => {
 
   if (!user) return <h2>You must be logged in to edit a post!</h2>;
 
-  if (user.id !== post.owner_id) return <h2>Unauthorized</h2>;
+  const posts = Object.values(postObj);
+
+  const post = posts.filter((post) => post.id == postId)[0];
+
+  if (user.id != post.owner_id) return <h2>Unauthorized</h2>;
+
+  if (!postTitle.length && !postBody.length) {
+    setPostTitle(post.title);
+    setPostBody(post.body);
+    setImageUrl(post.image_url);
+    setCommunityId(post.community_id);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

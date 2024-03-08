@@ -76,7 +76,10 @@ function ProfileButton() {
               <li className="text">{user.username}</li>
               <li className="text-email">{user.email}</li>
               <li>
-                <Link to="/posts/current" onClick={closeMenu}>
+                <Link
+                  to={`/posts/current/?user=${user?.username}`}
+                  onClick={closeMenu}
+                >
                   My Posts
                 </Link>
               </li>
