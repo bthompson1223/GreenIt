@@ -67,7 +67,7 @@ const CommentListItem = ({ comment }) => {
           <img id="commenter-profile-image" src={comment.user_image} alt="" />
         </div>
         <div className="commenter-data">
-          <h4>{comment.username}</h4>
+          <h4>u/{comment.username}</h4>
           {/* {postedDaysAgo == 0 && <p>posted {hoursAfterPosting} hours ago</p>}
           {postedDaysAgo > 0 && (
             <p>
