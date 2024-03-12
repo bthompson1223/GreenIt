@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { thunkCreateCommunity } from "../../../redux/community";
 import "./CreateCommunity.css";
+import { addNavCommunity } from "../../../redux/navCommunity";
 
 const CreateCommunity = () => {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ const CreateCommunity = () => {
             setImageLoading(false);
             return;
           } else {
+            dispatch(addNavCommunity(createdCommunity));
             navigate(`/communities/${createdCommunity.community_name}`);
           }
         })
