@@ -61,10 +61,17 @@ const CreateCommunity = () => {
 
       await dispatch(thunkCreateCommunity(formData))
         .then((createdCommunity) => {
-          navigate(`/communities/${createdCommunity.community_name}`);
+          console.log(createdCommunity);
+          if (createdCommunity.errors) {
+            setErrors(createdCommunity.errors);
+            setImageLoading(false);
+            return;
+          } else {
+            navigate(`/communities/${createdCommunity.community_name}`);
+          }
         })
         .catch(async (res) => {
-          console.log("Inside create community errors catch =>", res);
+          console.log(res);
         });
     }
   };
@@ -137,6 +144,9 @@ const CreateCommunity = () => {
           </button>
         )}
         {imageLoading && <p className="loading">Loading...</p>}
+        <div className="community-errors">
+          {errors.message && <p>{errors.message}</p>}
+        </div>
       </form>
     </div>
   );
