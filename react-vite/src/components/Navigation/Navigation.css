@@ -15,9 +15,45 @@
   padding-left: 0;
   margin: 0;
   flex: 1;
-  padding-bottom: 3%;
+  padding-bottom: 1%;
+  margin-bottom: 1%;
+  border-bottom: darkgreen 1px solid;
+  box-shadow: 0px 3px 3px lightgray;
   /* padding-top: 2%; */
 }
+
+.logo-li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0;
+  margin: 0;
+  flex: 1;
+  /* padding-bottom: 3%; */
+  /* padding-top: 2%; */
+}
+
+.logo-container > div > a > svg {
+  height: 100%;
+  width: 2.5rem;
+  margin: 0;
+  padding: 0;
+  align-self: baseline;
+  color: darkgreen;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  max-width: 33%;
+}
+
+/* .logo-li > svg:hover {
+  background-color: #068859;
+  color: white;
+} */
 
 .button-container {
   display: flex;
@@ -30,21 +66,34 @@
   text-decoration: none;
   font-size: 30px;
   font-weight: bolder;
-  color: #068859;
+  color: darkgreen;
   padding-top: 8px;
   padding-bottom: 8px;
   margin: 0 auto;
   justify-self: center;
-}
-
-.logo:hover {
-  background-color: #068859;
-  color: white;
-  border-radius: 15px;
-}
-
-.logo-li {
   display: flex;
-  justify-content: center;
-  width: 10%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-li:hover {
+  /* border: 1px solid #068859; */
+  border-radius: 15px;
+  box-shadow: 3px 3px 3px 3px #068859;
+  cursor: pointer;
+}
+
+.community-dropdown {
+  width: 9rem;
+  min-width: fit-content;
+}
+
+#community-nav-dropdown {
+  width: 100%;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+#community-nav-dropdown:hover {
+  box-shadow: 4px 4px 4px lightgreen;
 }
