@@ -7,6 +7,7 @@ import {
 } from "../../../redux/community";
 
 import "./EditCommunity.css";
+import { editNavCommunity } from "../../../redux/navCommunity";
 
 const EditCommunity = () => {
   const communityObj = useSelector((state) => state.communities);
@@ -84,7 +85,14 @@ const EditCommunity = () => {
 
       await dispatch(thunkUpdateCommunity(formData, communityParam.community))
         .then((updatedCommunity) => {
-          navigate(`/communities/${updatedCommunity.community_name}`);
+          if (updatedCommunity.errors) {
+            setErrors(updatedCommunity.errors);
+            setImageLoading(false);
+            return;
+          } else {
+            dispatch(editNavCommunity(updatedCommunity));
+            navigate(`/communities/${updatedCommunity.community_name}`);
+          }
         })
         .catch(async (res) => {
           console.log("Inside create community errors catch =>", res);

@@ -10,7 +10,7 @@ class Community(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    community_name = db.Column(db.String, nullable=False)
+    community_name = db.Column(db.String, unique=True, nullable=False)
     description = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.String, nullable=False)
 

@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import communitiesReducer from "./community";
 import postReducer from "./post";
 import commentReducer from "./comments";
+import navCommunityReducer from "./navCommunity";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   communities: communitiesReducer,
   posts: postReducer,
   comments: commentReducer,
+  navCommunities: navCommunityReducer,
 });
 
 let enhancer;

@@ -40,6 +40,9 @@ def create_community():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        repeat_community = Community.query.filter(Community.community_name == form.data['community_name']).first()
+        if repeat_community:
+            return {'errors': {'message': 'Community name already exists'}}, 401
         community_image = form.data['image_url']
         community_image.filename = get_unique_filename(community_image.filename)
         upload = upload_file_to_s3(community_image)
@@ -47,6 +50,7 @@ def create_community():
 
         if "url" not in upload:
             return upload
+        
         
         new_community = Community(
             owner_id = current_user.id,
