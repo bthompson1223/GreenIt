@@ -6,6 +6,7 @@ import "./Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { thunkGetNavCommunities } from "../../redux/navCommunity";
+import Search from "../Search/SearchBar/Search";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -69,7 +70,9 @@ function Navigation() {
         </div>
       </li>
 
-      <li className="empty"></li>
+      <li className="search-li">
+        <Search />
+      </li>
 
       <li className="button-container">
         <ProfileButton />

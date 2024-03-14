@@ -10,6 +10,7 @@ import communitiesReducer from "./community";
 import postReducer from "./post";
 import commentReducer from "./comments";
 import navCommunityReducer from "./navCommunity";
+import searchReducer from "./search";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   posts: postReducer,
   comments: commentReducer,
   navCommunities: navCommunityReducer,
+  search: searchReducer,
 });
 
 let enhancer;
