@@ -67,3 +67,25 @@
   justify-content: flex-end;
   /* margin-bottom: 1rem; */
 }
+
+@media (max-width: 875px) {
+  .comment-section {
+    width: 100%;
+  }
+
+  #new-comment-button {
+    max-width: 100%;
+  }
+
+  .new-comment-div > div {
+    width: 100%;
+  }
+
+  .new-comment-div textarea {
+    width: 100%;
+  }
+
+  .new-comment-div > button:first-child {
+    border-radius: 10px 10px 0px 0px;
+  }
+}

@@ -8,6 +8,12 @@ post_routes = Blueprint('posts', __name__)
 
 @post_routes.route('/')
 def get_all_posts():
+
+    search = request.args.get("search", type=str)
+    if search:
+        posts = Post.query.filter(Post.title.ilike(f"%{search}%")).all()
+        return [post.to_dict() for post in posts]
+
     print('inside posts basic route')
     posts = Post.query.all()
     print(posts)
