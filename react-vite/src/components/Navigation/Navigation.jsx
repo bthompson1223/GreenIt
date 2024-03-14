@@ -55,7 +55,6 @@ function Navigation() {
             name="communities"
             id="community-nav-dropdown"
             onChange={(e) => {
-              console.log(e.target.value);
               if (e.target.value === "/") navigate("/");
               else navigate(`/communities/${e.target.value}`);
             }}
