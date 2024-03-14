@@ -28,7 +28,6 @@ function Navigation() {
       key={community.id}
       value={community.community_name}
       onClick={(e) => {
-        console.log(e.target.value);
         if (e.target.value === "/") navigate("/");
         else navigate(`/communities/${e.target.value}`);
       }}
