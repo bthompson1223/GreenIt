@@ -6,7 +6,7 @@ const SearchedPost = ({ post, setSearchValue }) => {
 
   const handleClick = () => {
     setSearchValue("");
-    navigate(`/post/${post.id}`);
+    navigate(`/posts/${post.id}`);
   };
 
   return (
