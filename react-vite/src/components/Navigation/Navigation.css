@@ -14,11 +14,12 @@
   justify-content: space-evenly;
   padding-left: 0;
   margin: 0;
-  flex: 1;
+  /* flex: 1; */
   padding-bottom: 1%;
   margin-bottom: 1%;
   border-bottom: darkgreen 1px solid;
   box-shadow: 0px 3px 3px lightgray;
+  gap: 1rem;
   /* padding-top: 2%; */
 }
 
@@ -96,4 +97,63 @@
 
 #community-nav-dropdown:hover {
   box-shadow: 4px 4px 4px lightgreen;
+}
+
+.search-li {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0 1rem;
+  padding: 0 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.1);
+  height: 45px;
+}
+
+.search-li:hover {
+  box-shadow: 0 3px 5px 2px lightgreen;
+}
+
+@media screen and (max-width: 875px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .nav-container > li {
+    width: 90%;
+  }
+
+  .logo-container {
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-container {
+    align-items: center;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .profile-dropdown {
+    position: relative;
+    top: auto;
+    right: auto;
+    /* margin-top: 1rem; */
+  }
+
+  .hidden {
+    display: block;
+  }
+
+  .search-li {
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: auto;
+  }
 }

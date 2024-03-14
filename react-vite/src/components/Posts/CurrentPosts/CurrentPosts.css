@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 10px;
 }
 
 .user-posts-container {
@@ -15,4 +16,21 @@
   justify-content: space-between;
   height: 80vh;
   align-self: start;
+}
+
+@media (max-width: 875px) {
+  .user-posts-container {
+    max-width: 100%;
+  }
+  .user-post-root {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .current-posts-details-container {
+    height: auto;
+    align-self: center;
+    width: 58%;
+    gap: 10px;
+  }
 }

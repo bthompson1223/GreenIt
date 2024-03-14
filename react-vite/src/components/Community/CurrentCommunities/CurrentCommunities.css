@@ -8,6 +8,7 @@
 
 .current-community-container {
   width: 25%;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,4 +27,22 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+@media screen and (max-width: 875px) {
+  .user-community-root {
+    flex-wrap: wrap;
+    height: auto;
+    min-width: 400px;
+  }
+
+  .current-community-container {
+    width: 100%;
+
+    margin-bottom: 20px;
+  }
+
+  .current-community-details-container {
+    gap: 10px;
+  }
 }

@@ -82,3 +82,23 @@
 .post-list-edit-delete > button {
   border-radius: 0px 0px 10px 0px;
 }
+
+@media (max-width: 875px) {
+  .post-list-container {
+    min-width: auto;
+    padding: 0 1rem;
+  }
+
+  .post-container {
+    margin-bottom: 5%;
+  }
+
+  .post-details-body {
+    padding-left: 1%;
+    width: 99%;
+  }
+
+  .post-image {
+    max-width: 300px;
+  }
+}

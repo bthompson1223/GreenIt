@@ -6,6 +6,7 @@ import "./Navigation.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { thunkGetNavCommunities } from "../../redux/navCommunity";
+import Search from "../Search/SearchBar/Search";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Navigation() {
   }, [dispatch]);
 
   if (!communities.length) return null;
-  if (!community.length) return null;
+  // if (!community.length) return null;
 
   const options = communities.map((community) => (
     <option
@@ -59,11 +60,7 @@ function Navigation() {
               if (e.target.value === "/") navigate("/");
               else navigate(`/communities/${e.target.value}`);
             }}
-            defaultValue={
-              community && community.length === 1
-                ? community[0].community_name
-                : "/"
-            }
+            defaultValue="/"
           >
             <option value="/" onChange={() => navigate("/")}>
               {houseEmoji} Home
@@ -73,7 +70,9 @@ function Navigation() {
         </div>
       </li>
 
-      <li className="empty"></li>
+      <li className="search-li">
+        <Search />
+      </li>
 
       <li className="button-container">
         <ProfileButton />

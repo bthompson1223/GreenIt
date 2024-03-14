@@ -103,3 +103,39 @@
 .community-rules-container:hover {
   box-shadow: 2px 3px 2px green;
 }
+
+@media (max-width: 875px) {
+  .community-name-image {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .community-name-image > img {
+    margin-bottom: 2%;
+    margin-top: 2%;
+    max-height: 100px;
+  }
+
+  .community-post-details-rules {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .detail-rules {
+    height: auto;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .community-details {
+    padding: 2%;
+  }
+
+  .community-create-edit-delete {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
