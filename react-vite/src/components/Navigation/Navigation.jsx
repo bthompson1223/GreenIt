@@ -20,7 +20,7 @@ function Navigation() {
   }, [dispatch]);
 
   if (!communities.length) return null;
-  if (!community.length) return null;
+  // if (!community.length) return null;
 
   const options = communities.map((community) => (
     <option
@@ -59,11 +59,7 @@ function Navigation() {
               if (e.target.value === "/") navigate("/");
               else navigate(`/communities/${e.target.value}`);
             }}
-            defaultValue={
-              community && community.length === 1
-                ? community[0].community_name
-                : "/"
-            }
+            defaultValue="/"
           >
             <option value="/" onChange={() => navigate("/")}>
               {houseEmoji} Home
