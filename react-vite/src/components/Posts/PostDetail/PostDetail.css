@@ -15,7 +15,6 @@
   padding: 2%;
   gap: 5px;
   width: 75%;
-  max-width: 875px; /* Added max-width */
 }
 
 .post-detail-container:hover {
@@ -24,7 +23,6 @@
 
 .single-post-details {
   width: 75%;
-  max-width: 875px; /* Added max-width */
 }
 
 .post-info {
@@ -112,9 +110,12 @@
   .details,
   .post-details-title > p,
   .post-details-body-container,
-  .line,
-  .post-detail-image {
+  .line {
     width: 95%;
     max-width: 95%;
+  }
+
+  .post-detail-image {
+    max-width: 100%;
   }
 }
