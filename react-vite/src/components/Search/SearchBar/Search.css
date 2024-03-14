@@ -30,7 +30,7 @@
   border-top: none;
   z-index: 100;
   max-height: 33%;
-  width: 100%;
+  width: 90%;
   overflow-y: auto;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
@@ -42,4 +42,27 @@
 
   height: 100%;
   width: 600px;
+}
+
+@media screen and (max-width: 794px) {
+  /* #search-bar {
+    width: 100%;
+  } */
+
+  #search-icon {
+    margin-right: 0.5rem;
+  }
+
+  .search-results-div {
+    top: 8rem;
+    max-height: 50%;
+  }
+
+  .search-results {
+    width: 100%;
+  }
+
+  /* .search-results-div {
+    right: 10%;
+  } */
 }

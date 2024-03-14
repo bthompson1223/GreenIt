@@ -14,7 +14,7 @@
   justify-content: space-evenly;
   padding-left: 0;
   margin: 0;
-  flex: 1;
+  /* flex: 1; */
   padding-bottom: 1%;
   margin-bottom: 1%;
   border-bottom: darkgreen 1px solid;
@@ -115,15 +115,16 @@
   box-shadow: 0 3px 5px 2px lightgreen;
 }
 
-@media screen and (max-width: 868px) {
+@media screen and (max-width: 875px) {
   .nav-container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-right: 0;
   }
 
   .nav-container > li {
-    width: 100%;
+    width: 90%;
   }
 
   .logo-container {
