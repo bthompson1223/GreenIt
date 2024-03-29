@@ -5,6 +5,8 @@
   margin: 0 auto;
   border: 1px solid black;
   border-radius: 15px;
+  background-color: bisque;
+  box-shadow: 2px 3px 2px lightgrey;
 }
 
 .comment-section:hover {
@@ -29,7 +31,7 @@
   margin-bottom: 3rem;
 }
 
-.new-comment-div > div {
+.new-comment-div>div {
   justify-self: center;
   align-self: center;
   width: 75%;
@@ -57,7 +59,7 @@
   padding: 0.5rem;
 }
 
-.new-comment-div > button:first-child {
+.new-comment-div>button:first-child {
   border-radius: 10px 0px 0px 0px;
 }
 
@@ -77,7 +79,7 @@
     max-width: 100%;
   }
 
-  .new-comment-div > div {
+  .new-comment-div>div {
     width: 100%;
   }
 
@@ -85,7 +87,7 @@
     width: 100%;
   }
 
-  .new-comment-div > button:first-child {
+  .new-comment-div>button:first-child {
     border-radius: 10px 10px 0px 0px;
   }
 }

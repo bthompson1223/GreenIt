@@ -11,6 +11,19 @@
   flex-direction: column;
   gap: 20px;
   width: 33%;
+  position: sticky;
+  top: 0;
+  /* z-index: -1; */
+  /* right: 15%; */
+}
+
+/* Rest of the code remains the same */
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 33%;
   /* position: sticky; */
   /* Work on sticky positioning */
   /* right: 15%; */
@@ -24,6 +37,8 @@
   padding-bottom: 10%;
   padding-left: 10%;
   padding-right: 10%;
+  background-color: bisque;
+  box-shadow: 2px 3px 2px lightgrey;
 }
 
 .splash-about:hover {
@@ -35,7 +50,7 @@
   justify-self: center;
 }
 
-.splash-about > h2 {
+.splash-about>h2 {
   align-self: center;
 }
 

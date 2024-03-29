@@ -8,6 +8,8 @@
   border: 1px solid black;
   border-radius: 10px;
   gap: 20px;
+  background-color: bisque;
+  box-shadow: 2px 3px 2px lightgrey;
 }
 
 .community-list-container:hover {
@@ -38,15 +40,15 @@
   padding-bottom: 1%;
 }
 
-.community-link-container > a:first-child:hover {
+.community-link-container>a:first-child:hover {
   background-color: darkgreen;
   color: white;
   text-decoration: none;
   box-shadow: 2px 3px 2px green;
 }
 
-.tiny-edit-delete > button,
-.tiny-edit-delete > a {
+.tiny-edit-delete>button,
+.tiny-edit-delete>a {
   border: none;
   text-decoration: none;
   background-color: darkgreen;
@@ -56,8 +58,8 @@
   padding: 2%;
 }
 
-.tiny-edit-delete > button:hover,
-.tiny-edit-delete > a:hover {
+.tiny-edit-delete>button:hover,
+.tiny-edit-delete>a:hover {
   cursor: pointer;
   background-color: green;
 }

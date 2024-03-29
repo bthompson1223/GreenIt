@@ -16,6 +16,8 @@
   border: 1px solid black;
   border-radius: 10px;
   height: 100%;
+  background-color: bisque;
+  box-shadow: 2px 3px 2px lightgrey;
 }
 
 .current-community-container:hover {

@@ -7,6 +7,8 @@
   justify-content: center;
   min-height: 80vh;
   min-width: 40rem;
+  background-color: bisque;
+  box-shadow: 2px 3px 2px lightgrey;
 }
 
 .post-list-container:hover {
@@ -35,9 +37,9 @@
   padding: 2%;
 }
 
-.post-community-details > a,
-.post-community-details > a:hover,
-.post-community-details > a:visited,
+.post-community-details>a,
+.post-community-details>a:hover,
+.post-community-details>a:visited,
 .post-details,
 .post-details:hover,
 .post-details:visited {
@@ -75,11 +77,11 @@
   max-width: 500px;
 }
 
-.post-list-edit-delete > a {
+.post-list-edit-delete>a {
   border-radius: 0px 0px 0px 10px;
 }
 
-.post-list-edit-delete > button {
+.post-list-edit-delete>button {
   border-radius: 0px 0px 10px 0px;
 }
 
